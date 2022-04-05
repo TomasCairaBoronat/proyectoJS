@@ -13,7 +13,7 @@ function calculadora(primerNumero, segundoNumero, operacion) {
     }
 }
 
-/*for (let i = 1; i <= 10; i++){
+for (let i = 1; i <= 10; i++){
     console.log("Eres el usuario Nro :" + " " + i)
     if (i === 10){
         alert("Eres nuestro cliente Nro 10, felicidades has ganado un 10% de descuento en tu compra!")
@@ -25,7 +25,8 @@ let precioProducto = Number(prompt("Ingrese el valor total de su prducto o produ
 
 if (precioProducto == 0){
     alert("Ingrese un monto")
+}if (precioProducto <=0) { 
+    alert("ingrese un numero positivo")
 }else{
     alert("Su total es:" + " " + "$" + ((precioProducto + (calculadora (precioProducto,0.21,"*"))) - (calculadora(precioProducto,0.10,"*")) ) )
-
-}*/
+}
