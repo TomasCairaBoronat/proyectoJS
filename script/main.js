@@ -22,11 +22,12 @@ for (let i = 1; i <= 10; i++){
 }
 
 let precioProducto = Number(prompt("Ingrese el valor total de su prducto o productos (IVA del 21% se aplica despues junto con su 10% de descuento!)"))
-
+console.log(precioProducto)
 if (precioProducto == 0){
     alert("Ingrese un monto")
-}if (precioProducto <=0) { 
+}else if (precioProducto <=0) { 
     alert("ingrese un numero positivo")
 }else{
     alert("Su total es:" + " " + "$" + ((precioProducto + (calculadora (precioProducto,0.21,"*"))) - (calculadora(precioProducto,0.10,"*")) ) )
+    console.log("Su monto total es:"+ " "+ ((precioProducto + (calculadora (precioProducto,0.21,"*"))) - (calculadora(precioProducto,0.10,"*")) ))
 }
