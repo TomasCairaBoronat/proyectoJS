@@ -1,0 +1,23 @@
+@import url("https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap");
+body {
+  font-family: 'Comic Neue', cursive; }
+
+.navbar {
+  background-color: #dd0000; }
+  .navbar .carrito {
+    display: flex;
+    align-self: flex-end; }
+
+.titulo {
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  padding-top: 2%; }
+
+.foto1Div {
+  display: flex;
+  flex-flow: row wrap;
+  align-content: center;
+  justify-content: center; }
+  .foto1Div .foto1 {
+    padding-bottom: 2%; }
