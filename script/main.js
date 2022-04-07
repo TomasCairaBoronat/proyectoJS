@@ -23,13 +23,14 @@ for (let i = 1; i <= 10; i++){
     }
 }
 
-let precioProducto = parseInt(prompt("Ingrese el valor total de su prducto o productos (IVA del 21% se aplica despues junto con su 10% de descuento!)"))
-if (precioProducto == 0){
+let precioProducto = prompt("Ingrese el valor total de su prducto o productos (IVA del 21% se aplica despues junto con su 10% de descuento!)")
+let precioInt = parseInt(precioProducto)
+if (precioProducto == ""){
     alert("Ingrese un monto")
-}else if (precioProducto <=0) { 
+}else if (precioInt <=0) { 
     alert("ingrese un numero positivo")
 }else{
-    let precioFinal = precioProducto + (calculadora (precioProducto,0.21,"*")) - (calculadora(precioProducto,0.10,"*"))
+    let precioFinal = precioInt + (calculadora (precioInt,0.21,"*")) - (calculadora(precioInt,0.10,"*"))
     alert("Su total es :" + espacio + "$" + precioFinal )
     console.log("Este es el precio final :" + espacio + precioFinal)
 }
