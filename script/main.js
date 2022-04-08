@@ -30,7 +30,7 @@ if (precioProducto == ""){
 }else if (precioInt <=0) { 
     alert("ingrese un numero positivo")
 }else{
-    let precioFinal = precioInt + (calculadora (precioInt,0.21,"*")) - (calculadora(precioInt,0.10,"*"))
+    let precioFinal = precioInt - (calculadora (precioInt,0.10,"*")) + (calculadora(precioInt,0.21,"*"))
     alert("Su total es :" + espacio + "$" + precioFinal )
     console.log("Este es el precio final :" + espacio + precioFinal)
 }
