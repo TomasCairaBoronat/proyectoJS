@@ -19,22 +19,27 @@ let espacio = " "
 
 //Clases
 class Usuario{
-    constructor(nombre,edad,direccion) {
-        this.nombre = nombre;
+    constructor(nombre,edad,mail) {
+        this.nombre = nombre.toUpperCase();
         this.edad = edad;
-        this.direccion = direccion;
+        this.mail = mail.toUpperCase();
     }
-    consoleInfoPersonal(){
-        console.log("Nombre:" + this.nombre + espacio + "Edad:" + this.edad + espacio + "Dirección:" + this.direccion);
-    }
+
     alertInfoPersonal(){
         alert("Nombre:" + this.nombre + espacio + "Edad:" + this.edad + espacio + "Dirección:" + this.direccion)
     }
 }
 
+class Comics{
+    constructor(titulo,precio) {
+        this.titulo = titulo.toUpperCase();
+        this.precio = precio;
+    }
+}
+
 //Objeto1
-const usuario1 = new Usuario(prompt("Ingrese su nombre"), prompt("Ingrese su edad"), prompt("Ingrese su dirección"));
-usuario1.consoleInfoPersonal();
+const usuario1 = new Usuario(prompt("Ingrese su nombre"), prompt("Ingrese su edad"), prompt("Ingrese su mail"));
+console.log(usuario1)
 
 //Iteraciones
 for (let i = 1; i <= 10; i++){
@@ -45,22 +50,32 @@ for (let i = 1; i <= 10; i++){
     }
 }
 
+//Comics
+
+const comic01 = new Comics(prompt("Ingrese el titulo del comic"), prompt("Ingrese el precio del comic"))
+const comic02 = new Comics(prompt("Ingrese el titulo del comic"), prompt("Ingrese el precio del comic"))
+
+//Arrays
+const comics = []
+comics.push(comic01);
+comics.push(comic02);
+
+console.log(comics);
+
+let precioNeto = comic01.precio + comic02.precio;
 //Funcion Precio
-let precioProducto = prompt("Ingrese el valor total de su prducto o productos (¡IVA del 21% se aplica despues junto con su 10% de descuento!)")
-
-let precioInt = parseInt(precioProducto)
-
-if (precioProducto == ""){
-
+let netoInt = parseInt(precioNeto)
+if (precioNeto == ""){
+    
     alert("Ingrese un monto")
 
-}else if (precioInt <=0) { 
+}else if (netoInt <=0) { 
 
     alert("ingrese un numero positivo")
 
 }else{
 
-    let precioFinal = precioInt - (calculadora (precioInt,0.10,"*")) + (calculadora(precioInt,0.21,"*"))
+    let precioFinal = netoInt - (calculadora (netoInt,0.10,"*")) + (calculadora(netoInt,0.21,"*"))
 
     alert("Su total es :" + espacio + "$" + precioFinal )
 
