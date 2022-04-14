@@ -37,16 +37,45 @@ class Comics{
     }
 }
 
-//Objeto1
+//Usuarios
+
 const usuario1 = new Usuario(prompt("Ingrese su nombre"), prompt("Ingrese su edad"), prompt("Ingrese su mail"));
-console.log(usuario1)
+
+const usuario2 = new Usuario(prompt("Ingrese su nombre"), prompt("Ingrese su edad"), prompt("Ingrese su mail"));
+
+const usuario3 = new Usuario(prompt("Ingrese su nombre"), prompt("Ingrese su edad"), prompt("Ingrese su mail"));
+
+const usuario4 = new Usuario(prompt("Ingrese su nombre"), prompt("Ingrese su edad"), prompt("Ingrese su mail"));
+
+const usuario5 = new Usuario(prompt("Ingrese su nombre"), prompt("Ingrese su edad"), prompt("Ingrese su mail"));
+
+const usuarios = [usuario1,usuario2,usuario3,usuario4]
+usuarios.push(usuario5)
+
+for(const usuario of usuarios){
+    while (usuario.nombre == ""){
+        alert("Ingrese su nombre correctamente")
+       usuario.nombre = prompt("Ingrese su nombre")
+    }
+    while(usuario.edad == ""){
+        alert("Ingrese su edad correctamente")
+        usuario.edad = prompt("Ingrese su edad")
+    }
+
+    while(usuario.mail == ""){
+        alert("Ingrese su mail correctamente")
+        usuario.mail = prompt("Ingrese su mail")
+    }
+    console.log(usuario)
+}
+
+
 
 //Iteraciones
-for (let i = 1; i <= 10; i++){
+for (let i = 1; i <= 5; i++){
     
-    if (i === 10){
-        alert("Felicidades"+ espacio + usuario1.nombre + espacio +"eres nuestro cliente Nro 10, ¡has ganado un 10% de descuento en tu compra!")
-        break
+    if (i === 5){
+        alert("Felicidades"+ espacio + usuario5.nombre + espacio +"eres nuestro cliente Nro 5, ¡has ganado un 10% de descuento en tu compra!")
     }
 }
 
@@ -56,6 +85,7 @@ const comic01 = new Comics(prompt("Ingrese el titulo del comic #1"), prompt("Ing
 const comic02 = new Comics(prompt("Ingrese el titulo del comic #2"), prompt("Ingrese el precio del comic #2"))
 
 //Arrays
+
 const comics = []
 comics.push(comic01,comic02);
 
@@ -84,7 +114,7 @@ if (precioNeto == ""){
     
     let precioFinal = netoInt - (calculadora (netoInt,0.10,"*")) + (calculadora(netoInt,0.21,"*"))
     
-    alert("Su total es :" + espacio + "$" + precioFinal )
+    alert("Su total es:" + espacio + "$" + precioFinal )
     
-    console.log("Precio total :" + espacio + "$" + precioFinal)
+    console.log("Precio total:" + espacio + "$" + precioFinal)
 }
