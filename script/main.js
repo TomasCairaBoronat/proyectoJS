@@ -57,8 +57,7 @@ const comic02 = new Comics(prompt("Ingrese el titulo del comic #2"), prompt("Ing
 
 //Arrays
 const comics = []
-comics.push(comic01);
-comics.push(comic02);
+comics.push(comic01,comic02);
 
 for (const comic of comics) {
     console.log(comic.titulo + ":" + espacio +"$"+ comic.precio);
