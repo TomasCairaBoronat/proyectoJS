@@ -35,7 +35,6 @@ const mailRegEx = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))
 
 // Array de datos a ingresar:
 const datos = ['nombre', 'edad', 'mail']
-
 // Array donde ir guardando los usuarios:
 const usuarios = [];
 
@@ -44,22 +43,23 @@ let index = 0;
 
 // Clase Usuario:
 class Usuario {
-  
   constructor (nombre, edad, mail) {
-    this.nombre = nombre;
+    this.nombre = nombre
     this.edad = edad;
     this.mail = mail;
   }
-  
   mostrarDataUsuario() {
     alert(
-      'Nombre: ' + this.nombre + '\n' + 
+      'Nombre: ' + this.nombre.toUpperCase() + '\n' + 
       'Edad: ' + this.edad + '\n' + 
-      'Mail: ' + this.mail
+      'Mail: ' + this.mail.toUpperCase()
     )
   }
+  pasarAMayuscula(){
+    this.nombre = this.nombre.toUpperCase()
+    this.mail = this.mail.toUpperCase()
+  }
 }
-
 // Metodos de validacion de datos ingresados.
 const validacion = {
 
@@ -89,11 +89,11 @@ function crearUsuario() {
   usuarios[index] = new Usuario();
 
   for (let dato of datos) {
+
     usuarios[index][dato] = ingresarDataUsuario(dato)
   }
-
   usuarios[index].mostrarDataUsuario()
-
+  usuarios[index].pasarAMayuscula()
   index++
 }
 
@@ -105,7 +105,6 @@ do {
     alert("Felicidades"+ espacio + usuarios[4].nombre + espacio +"eres nuestro cliente Nro 5, ¡has ganado un 10% de descuento en tu compra!");
 }
 console.log(usuarios)
-
 
 //Comics
 
@@ -130,9 +129,12 @@ class Comic {
   
   mostrarDataComic() {
     alert(
-      'Titulo: ' + this.titulo + '\n' + 
+      'Titulo: ' + this.titulo.toUpperCase() + '\n' + 
       'Precio: ' + "$"+ this.precio
     )
+  }
+  pasarAMayuscula(){
+    this.titulo = this.titulo.toUpperCase();
   }
 }
 
@@ -155,7 +157,7 @@ function ingresarDataComic(datosComic) {
 
   } while (validacionComics[datosComic](input));
   
-  return input.toUpperCase()
+  return input
 }
 
 // Funcion para crear un nuevo comic:
@@ -168,7 +170,7 @@ function crearComic() {
   }
 
   comics[indexComic].mostrarDataComic()
-
+  comics[indexComic].pasarAMayuscula()
   indexComic++
 }
 
@@ -178,7 +180,7 @@ do {
 } while (indexComic <= 1);
 
 for (let comic of comics){
-    console.log('Titulo: ' + comic.titulo.toUpperCase() + '\n' + 
+    console.log('Titulo: ' + comic.titulo + '\n' + 
     'Precio: ' + "$"+ comic.precio)
 }
 
