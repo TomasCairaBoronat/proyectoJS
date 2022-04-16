@@ -50,9 +50,9 @@ class Usuario {
   }
   mostrarDataUsuario() {
     alert(
-      'Nombre: ' + this.nombre.toUpperCase() + '\n' + 
+      'Nombre: ' + this.nombre + '\n' + 
       'Edad: ' + this.edad + '\n' + 
-      'Mail: ' + this.mail.toUpperCase()
+      'Mail: ' + this.mail
     )
   }
   pasarAMayuscula(){
@@ -92,8 +92,10 @@ function crearUsuario() {
 
     usuarios[index][dato] = ingresarDataUsuario(dato)
   }
-  usuarios[index].mostrarDataUsuario()
-  usuarios[index].pasarAMayuscula()
+  usuarios[index].pasarAMayuscula();
+
+  usuarios[index].mostrarDataUsuario();
+  
   index++
 }
 
@@ -129,7 +131,7 @@ class Comic {
   
   mostrarDataComic() {
     alert(
-      'Titulo: ' + this.titulo.toUpperCase() + '\n' + 
+      'Titulo: ' + this.titulo + '\n' + 
       'Precio: ' + "$"+ this.precio
     )
   }
@@ -169,8 +171,9 @@ function crearComic() {
     comics[indexComic][datoComic] = ingresarDataComic(datoComic)
   }
 
-  comics[indexComic].mostrarDataComic()
-  comics[indexComic].pasarAMayuscula()
+  comics[indexComic].pasarAMayuscula();
+
+  comics[indexComic].mostrarDataComic();
   indexComic++
 }
 
