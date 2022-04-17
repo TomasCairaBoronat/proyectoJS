@@ -49,19 +49,24 @@ class Usuario {
     this.mail = mail;
   }
   mostrarDataUsuario() {
+
     alert(
       'Nombre: ' + this.nombre + '\n' + 
       'Edad: ' + this.edad + '\n' + 
       'Mail: ' + this.mail
     )
+
   }
   pasarAMayuscula(){
-    this.nombre = this.nombre.toUpperCase()
-    this.mail = this.mail.toUpperCase()
+
+    this.nombre = this.nombre.toUpperCase();
+
+    this.mail = this.mail.toUpperCase();
+
   }
 }
 // Metodos de validacion de datos ingresados.
-const validacion = {
+const validacionUsuarios = {
 
   nombre: (input) => input.length < 3,
 
@@ -78,9 +83,10 @@ function ingresarDataUsuario(dato) {
   do {
     input = prompt("Ingrese su " + dato)
 
-  } while (validacion[dato](input));
+  } while (validacionUsuarios[dato](input));
   
-  return input
+  return input;
+
 }
 
 // Funcion para crear un nuevo usuario:
@@ -100,19 +106,20 @@ function crearUsuario() {
 }
 
 do { 
-  crearUsuario()
+
+  crearUsuario();
 
 } while (index <= 4){
 
     alert("Felicidades"+ espacio + usuarios[4].nombre + espacio +"eres nuestro cliente Nro 5, ¡has ganado un 10% de descuento en tu compra!");
 }
-console.log(usuarios)
+console.log(usuarios);
 
 //Comics
 
 
 // Array de datos comics:
-const datosComic = ['titulo', 'precio']
+const datosComic = ['titulo', 'precio'];
 
 // Array donde ir guardando los comics:
 const comics = [];
@@ -124,7 +131,9 @@ let indexComic = 0;
 class Comic {
   
   constructor (titulo,precio) {
+    
     this.titulo = titulo;
+
     this.precio = precio;
 
   }
