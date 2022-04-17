@@ -44,7 +44,7 @@ let index = 0;
 // Clase Usuario:
 class Usuario {
   constructor (nombre, edad, mail) {
-    this.nombre = nombre
+    this.nombre = nombre;
     this.edad = edad;
     this.mail = mail;
   }
