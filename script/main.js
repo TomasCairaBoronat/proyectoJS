@@ -57,11 +57,11 @@ class Usuario {
     )
 
   }
-  pasarAMayuscula(){
+  convertirUsuario(){
 
     this.nombre = this.nombre.toUpperCase();
 
-    this.mail = this.mail.toUpperCase();
+    this.mail = this.mail.toLowerCase()
 
   }
 }
@@ -98,7 +98,7 @@ function crearUsuario() {
 
     usuarios[index][dato] = ingresarDataUsuario(dato)
   }
-  usuarios[index].pasarAMayuscula();
+  usuarios[index].convertirUsuario();
 
   usuarios[index].mostrarDataUsuario();
   
@@ -113,6 +113,7 @@ do {
 
     alert("Felicidades"+ espacio + usuarios[4].nombre + espacio +"eres nuestro cliente Nro 5, ¡has ganado un 10% de descuento en tu compra!");
 }
+
 console.log(usuarios);
 
 //Comics
