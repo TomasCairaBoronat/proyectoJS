@@ -70,7 +70,7 @@ const validacionUsuarios = {
 
   nombre: (input) => input.length < 3,
 
-  edad: (input) => isNaN(input) || input > 100,
+  edad: (input) => isNaN(input) || input > 100 || input == "" ,
 
   mail: (input) => !input.match(mailRegEx)
 }
