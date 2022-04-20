@@ -195,7 +195,7 @@ do {
 
 } while (indexComic <= 1);
 
-const resumenCompra = comics.filter((el) => el.precio > 0)
+const resumenCompra = comics.filter((el) => el.precio)
 
 
 
@@ -205,33 +205,34 @@ resumenCompra.forEach((el) =>{
   
 })
 
-let precioNeto = (comics[0].precio + comics[1].precio);
+const options = {
+  style: 'currency',
+  currency: 'ARS'
+}
+const formatPrice = price => price.toLocaleString('es-AR', options);
+
+function calcularPorcentaje (porcentaje) {
+  return function (precio) {
+    let calculoPorcentaje = (precio * porcentaje) / 100;
+    return precio += calculoPorcentaje;
+  }
+}
 
 let precioTotalCompra = resumenCompra.reduce((acc,el) => acc + parseInt(el.precio),0)
 
 
 //Funcion Precio
 
-if (precioNeto == ""){
-    
-    alert("Ingrese un monto");
-    
-}else if (precioTotalCompra <=0) { 
-    
-    alert("ingrese un numero positivo");
-    
-}else{
-    let descuento10 = (calculadora (precioTotalCompra,0.10,"*"));
+    let descuento10 = calcularPorcentaje(-10);
 
-    let precioConDescuento = precioTotalCompra - descuento10 ;
+    let precioConDescuento = descuento10(precioTotalCompra) ;
 
-    let iva = (calculadora(precioConDescuento,0.21,"*"));
+    let iva = calcularPorcentaje(21);
 
-    let precioFinal = precioConDescuento + iva;
+    let precioFinal = iva(precioConDescuento);
 
     alert("Productos: "+"\n" + comics[0].titulo + ": " + "$"+ parseInt(comics[0].precio) +"\n" + 
-    comics[1].titulo + ": " + "$"+ parseInt(comics[1].precio)+"\n" +"Descuentos e impuestos:" +"\n"+ "10% Off: "+"$"+ descuento10 +"\n"
-    +"IVA: " +"$" + iva +"\n" +"Total:"+"\n" + espacio + "$" + precioFinal );
+    comics[1].titulo + ": " + "$"+ parseInt(comics[1].precio)+"\n" +"Descuentos e impuestos:" +"\n"+ "10% Off: "+"$"+ (precioTotalCompra * 0.10) +"\n"
+    +"IVA: " +"$" + (precioConDescuento * 0.21) +"\n" +"Total:"+"\n" + espacio + formatPrice(precioFinal) );
     
-    console.log("Precio total:" + espacio + "$" + precioFinal);
-}
+    console.log("Precio total:" + espacio + formatPrice(precioFinal));
