@@ -106,17 +106,17 @@ function crearUsuario() {
   index++
 }
 
-do { 
+// do { 
 
-  crearUsuario();
+//   crearUsuario();
 
-} while (index <= 4){
+// } while (index <= 4){
 
-    alert("Felicidades"+ espacio + usuarios[4].nombre + espacio 
-    +"eres nuestro cliente Nro 5, ¡has ganado un 10% de descuento en tu compra!");
-}
+//     alert("Felicidades"+ espacio + usuarios[4].nombre + espacio 
+//     +"eres nuestro cliente Nro 5, ¡has ganado un 10% de descuento en tu compra!");
+// }
 
-console.log(usuarios);
+// console.log(usuarios);
 
 //Comics
 
@@ -195,14 +195,9 @@ do {
 
 } while (indexComic <= 1);
 
-const resumenCompra = comics.filter((el) => el.precio)
-
-
-
-resumenCompra.forEach((el) =>{
+comics.forEach((el) =>{
   console.log('Titulo: ' + el.titulo + '\n' + 
 'Precio: ' + "$"+ el.precio)
-  
 })
 
 const options = {
@@ -218,7 +213,7 @@ function calcularPorcentaje (porcentaje) {
   }
 }
 
-let precioTotalCompra = resumenCompra.reduce((acc,el) => acc + parseInt(el.precio),0)
+let precioTotalCompra = comics.reduce((acc,el) => acc + parseInt(el.precio),0)
 
 
 //Funcion Precio
