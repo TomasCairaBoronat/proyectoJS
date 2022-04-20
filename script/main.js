@@ -118,7 +118,7 @@ do {
 
 console.log(usuarios);
 
-Comics
+//Comics
 
 
 // Array de datos comics:
