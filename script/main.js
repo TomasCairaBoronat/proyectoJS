@@ -26,7 +26,9 @@ function calculadora(primerNumero, segundoNumero, operacion) {
 }
 
 //Declaracion de shortcuts
+
 let espacio = " ";
+
 
 //Usuarios
 
@@ -41,7 +43,7 @@ const usuarios = [];
 // Indice del array de usuarios:
 let index = 0;
 
-// Clase Usuario:
+// Class Usuario:
 class Usuario {
   constructor (nombre, edad, mail) {
     this.nombre = nombre;
@@ -94,10 +96,9 @@ function crearUsuario() {
 
   usuarios[index] = new Usuario();
 
-  for (let dato of datos) {
-
+  datos.forEach((dato) =>{
     usuarios[index][dato] = ingresarDataUsuario(dato)
-  }
+  })
   usuarios[index].convertirUsuario();
 
   usuarios[index].mostrarDataUsuario();
@@ -111,7 +112,8 @@ do {
 
 } while (index <= 4){
 
-    alert("Felicidades"+ espacio + usuarios[4].nombre + espacio +"eres nuestro cliente Nro 5, ¡has ganado un 10% de descuento en tu compra!");
+    alert("Felicidades"+ espacio + usuarios[4].nombre + espacio 
+    +"eres nuestro cliente Nro 5, ¡has ganado un 10% de descuento en tu compra!");
 }
 
 console.log(usuarios);
@@ -177,9 +179,10 @@ function crearComic() {
 
   comics[indexComic] = new Comic();
 
-  for (let datoComic of datosComic) {
+  
+  datosComic.forEach((datoComic) => {
     comics[indexComic][datoComic] = ingresarDataComic(datoComic)
-  }
+  })
 
   comics[indexComic].pasarAMayuscula();
 
@@ -192,35 +195,43 @@ do {
 
 } while (indexComic <= 1);
 
-for (let comic of comics){
-    console.log('Titulo: ' + comic.titulo + '\n' + 
-    'Precio: ' + "$"+ comic.precio)
-}
+const resumenCompra = comics.filter((el) => el.precio > 0)
+
+
+
+resumenCompra.forEach((el) =>{
+  console.log('Titulo: ' + el.titulo + '\n' + 
+'Precio: ' + "$"+ el.precio)
+  
+})
 
 let precioNeto = (comics[0].precio + comics[1].precio);
 
-let comicPrecio01int = parseInt(comics[0].precio);
-
-let comicPrecio02int = parseInt(comics[1].precio);
+let precioTotalCompra = resumenCompra.reduce((acc,el) => acc + parseInt(el.precio),0)
 
 
 //Funcion Precio
-let netoInt = comicPrecio01int + comicPrecio02int;
 
 if (precioNeto == ""){
     
     alert("Ingrese un monto");
     
-}else if (netoInt <=0) { 
+}else if (precioTotalCompra <=0) { 
     
     alert("ingrese un numero positivo");
     
 }else{
-    
-    let precioConDescuento = netoInt - (calculadora (netoInt,0.10,"*"));
-    let precioFinal = precioConDescuento + (calculadora(precioConDescuento,0.21,"*"))
-    
-    alert("Su total es:" + espacio + "$" + precioFinal );
+    let descuento10 = (calculadora (precioTotalCompra,0.10,"*"));
+
+    let precioConDescuento = precioTotalCompra - descuento10 ;
+
+    let iva = (calculadora(precioConDescuento,0.21,"*"));
+
+    let precioFinal = precioConDescuento + iva;
+
+    alert("Productos: "+"\n" + comics[0].titulo + ": " + "$"+ parseInt(comics[0].precio) +"\n" + 
+    comics[1].titulo + ": " + "$"+ parseInt(comics[1].precio)+"\n" +"Descuentos e impuestos:" +"\n"+ "10% Off: "+"$"+ descuento10 +"\n"
+    +"IVA: " +"$" + iva +"\n" +"Total:"+"\n" + espacio + "$" + precioFinal );
     
     console.log("Precio total:" + espacio + "$" + precioFinal);
 }
