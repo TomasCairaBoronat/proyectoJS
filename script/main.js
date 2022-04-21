@@ -1,29 +1,3 @@
-//Calculadora
-function calculadora(primerNumero, segundoNumero, operacion) {
-    switch (operacion) {
-
-        case "+":
-
-            return primerNumero + segundoNumero;
-
-        case "-":
-
-            return primerNumero - segundoNumero;
-
-        case "*":
-
-            return primerNumero * segundoNumero;
-
-        case "/":
-
-            return primerNumero / segundoNumero;
-
-        default:
-
-            return 0;
-
-    }
-}
 
 //Declaracion de shortcuts
 
