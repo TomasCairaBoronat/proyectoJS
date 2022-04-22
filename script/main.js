@@ -1,3 +1,10 @@
+function sConsole() {
+  let datos = document.getElementsByClassName("dato");
+  for(let data of datos){
+    let datoshtml = data.value;
+    console.log(datoshtml);
+  }
+}
 
 //Declaracion de shortcuts
 
@@ -10,7 +17,7 @@ let espacio = " ";
 const mailRegEx = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 
 // Array de datos a ingresar:
-const datos = ['nombre', 'edad', 'mail']
+const datos = ['nombre','apellido', 'edad', 'mail']
 // Array donde ir guardando los usuarios:
 const usuarios = [];
 
@@ -19,24 +26,23 @@ let index = 0;
 
 // Class Usuario:
 class Usuario {
-  constructor (nombre, edad, mail) {
+  constructor (nombre, apellido , edad, mail) {
     this.nombre = nombre;
+    this.apellido = apellido;
     this.edad = edad;
     this.mail = mail;
   }
   mostrarDataUsuario() {
 
     alert(
-      'Nombre: ' + this.nombre + '\n' + 
-      'Edad: ' + this.edad + '\n' + 
-      'Mail: ' + this.mail
+      `Se han cargado sus datos en el menu personal`
     )
 
   }
   convertirUsuario(){
 
     this.nombre = this.nombre.toUpperCase();
-
+    this.apellido = this.apellido.toUpperCase();
     this.mail = this.mail.toLowerCase()
 
   }
@@ -45,6 +51,8 @@ class Usuario {
 const validacionUsuarios = {
 
   nombre: (input) => input.length < 3,
+  
+  apellido: (input) => input.length < 3,
 
   edad: (input) => isNaN(input) || input > 100 || input == "" ,
 
@@ -70,25 +78,41 @@ function crearUsuario() {
 
   usuarios[index] = new Usuario();
 
-  datos.forEach((dato) =>{
+  for(let dato of datos){
     usuarios[index][dato] = ingresarDataUsuario(dato)
-  })
+
+  }
+  
   usuarios[index].convertirUsuario();
 
   usuarios[index].mostrarDataUsuario();
-  
   index++
 }
+crearUsuario(); 
+ 
+for(let usuario of usuarios){
+  let nombre = document.querySelector("#nombre");
+  nombre.innerHTML = `<p>${usuario.nombre}</p>`;
+  let apellido = document.querySelector("#apellido");
+  apellido.innerHTML = `<p>${usuario.apellido}</p>`;
+  let edad = document.querySelector("#edad");
+  edad.innerHTML = `<p>${usuario.edad}</p>`;
+  let mail = document.querySelector("#mail");
+    mail.innerHTML = `<p>${usuario.mail}</p>`;
 
-do { 
-
-  crearUsuario();
-
-} while (index <= 4){
-
-    alert("Felicidades"+ espacio + usuarios[4].nombre + espacio 
-    +"eres nuestro cliente Nro 5, ¡has ganado un 10% de descuento en tu compra!");
 }
+
+
+
+// do { 
+
+//   crearUsuario();
+
+// } while (index <= 4){
+
+//     alert("Felicidades"+ espacio + usuarios[4].nombre + espacio 
+//     +"eres nuestro cliente Nro 5, ¡has ganado un 10% de descuento en tu compra!");
+// }
 
 console.log(usuarios);
 
@@ -160,7 +184,6 @@ function crearComic() {
 
   comics[indexComic].pasarAMayuscula();
 
-  comics[indexComic].mostrarDataComic();
   indexComic++
 }
 
@@ -190,18 +213,36 @@ function calcularPorcentaje (porcentaje) {
 let precioTotalCompra = comics.reduce((acc,el) => acc + parseInt(el.precio),0)
 
 
-//Funcion Precio
+// //Funcion Precio
 
-    let descuento10 = calcularPorcentaje(-10);
+ if (precioTotalCompra != 0){
+   
+   let descuento10 = calcularPorcentaje(-10);
+  
+      let precioConDescuento = descuento10(precioTotalCompra) ;
+  
+      let iva = calcularPorcentaje(21);
+  
+      let precioFinal = iva(precioConDescuento);
+  
+      alert(`Sus productos se han agregado al carrito`);
+      
+      console.log("Precio total:" + espacio + formatPrice(precioFinal));
+      let carrito = document.querySelector("#resumenCompra")
+      for (const comic of comics) {
+        let li = document.createElement("li");
+        li.innerHTML = `${comic.titulo}: $${comic.precio}`;
+        carrito.append(li);
+      }
+      let descuentos = document.querySelector("#descuentos");
+      descuentos.innerHTML = `<p>10% off: ${formatPrice(precioTotalCompra * 0.10)}</p>`;
+      
+      let impuestos = document.querySelector("#impuestos");
+      impuestos.innerHTML = `<p>IVA: ${formatPrice(precioTotalCompra * 0.21)}</p>`;
+      
+      let totalPrecio = document.querySelector("#totalPrecio");
+      totalPrecio.innerHTML = `<p>${formatPrice(precioTotalCompra)}</p>`
+ }   
 
-    let precioConDescuento = descuento10(precioTotalCompra) ;
 
-    let iva = calcularPorcentaje(21);
 
-    let precioFinal = iva(precioConDescuento);
-
-    alert("Productos: "+"\n" + comics[0].titulo + ": " + "$"+ parseInt(comics[0].precio) +"\n" + 
-    comics[1].titulo + ": " + "$"+ parseInt(comics[1].precio)+"\n" +"Descuentos e impuestos:" +"\n"+ "10% Off: "+"$"+ (precioTotalCompra * 0.10) +"\n"
-    +"IVA: " +"$" + (precioConDescuento * 0.21) +"\n" +"Total:"+"\n" + espacio + formatPrice(precioFinal) );
-    
-    console.log("Precio total:" + espacio + formatPrice(precioFinal));

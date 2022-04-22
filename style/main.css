@@ -4,7 +4,7 @@ body {
 
 .navbar {
   background-color: #dd0000; }
-  .navbar .carrito {
+  .navbar .iconos {
     display: flex;
     align-self: flex-end; }
 
@@ -21,3 +21,12 @@ body {
   justify-content: center; }
   .foto1Div .foto1 {
     padding-bottom: 2%; }
+
+.botones {
+  background-color: #c2c1c1; }
+
+.encabezadoModals {
+  background-color: red; }
+
+.footerModals {
+  background-color: red; }
