@@ -1,15 +1,9 @@
-function sConsole() {
-  let datos = document.getElementsByClassName("dato");
-  for(let data of datos){
-    let datoshtml = data.value;
-    console.log(datoshtml);
-  }
-}
+
 
 //Declaracion de shortcuts
 
 let espacio = " ";
-
+const select  = el => document.querySelector(el);
 
 //Usuarios
 
@@ -91,16 +85,17 @@ function crearUsuario() {
 crearUsuario(); 
  
 for(let usuario of usuarios){
-  let nombre = document.querySelector("#nombre");
-  nombre.innerHTML = `<p>${usuario.nombre}</p>`;
-  let apellido = document.querySelector("#apellido");
-  apellido.innerHTML = `<p>${usuario.apellido}</p>`;
-  let edad = document.querySelector("#edad");
-  edad.innerHTML = `<p>${usuario.edad}</p>`;
-  let mail = document.querySelector("#mail");
-    mail.innerHTML = `<p>${usuario.mail}</p>`;
+  
+  select("#nombre").innerHTML = `<p>${usuario.nombre}</p>`;
+  
+  select("#apellido").innerHTML = `<p>${usuario.apellido}</p>`;
+  
+  select("#edad").innerHTML = `<p>${usuario.edad}</p>`;
+  
+  select("#mail").innerHTML = `<p>${usuario.mail}</p>`;
 
 }
+console.log(usuarios[0]);
 
 
 
@@ -114,7 +109,6 @@ for(let usuario of usuarios){
 //     +"eres nuestro cliente Nro 5, ¡has ganado un 10% de descuento en tu compra!");
 // }
 
-console.log(usuarios);
 
 //Comics
 
@@ -191,7 +185,6 @@ do {
   crearComic()
 
 } while (indexComic <= 1);
-
 comics.forEach((el) =>{
   console.log('Titulo: ' + el.titulo + '\n' + 
 'Precio: ' + "$"+ el.precio)
@@ -224,8 +217,6 @@ let precioTotalCompra = comics.reduce((acc,el) => acc + parseInt(el.precio),0)
       let iva = calcularPorcentaje(21);
   
       let precioFinal = iva(precioConDescuento);
-  
-      alert(`Sus productos se han agregado al carrito`);
       
       console.log("Precio total:" + espacio + formatPrice(precioFinal));
       let carrito = document.querySelector("#resumenCompra")
@@ -234,14 +225,14 @@ let precioTotalCompra = comics.reduce((acc,el) => acc + parseInt(el.precio),0)
         li.innerHTML = `${comic.titulo}: $${comic.precio}`;
         carrito.append(li);
       }
-      let descuentos = document.querySelector("#descuentos");
-      descuentos.innerHTML = `<p>10% off: ${formatPrice(precioTotalCompra * 0.10)}</p>`;
       
-      let impuestos = document.querySelector("#impuestos");
-      impuestos.innerHTML = `<p>IVA: ${formatPrice(precioTotalCompra * 0.21)}</p>`;
+      select("#descuentos").innerHTML = `<p>10% off: ${formatPrice(precioTotalCompra * 0.10)}</p>`;
       
-      let totalPrecio = document.querySelector("#totalPrecio");
-      totalPrecio.innerHTML = `<p>${formatPrice(precioTotalCompra)}</p>`
+      
+      select("#impuestos").innerHTML = `<p>IVA: ${formatPrice(precioTotalCompra * 0.21)}</p>`;
+      
+      
+      select("#totalPrecio").innerHTML = `<p>${formatPrice(precioTotalCompra)}</p>`
  }   
 
 
