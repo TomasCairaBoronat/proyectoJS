@@ -146,14 +146,14 @@ function crearComic() {
   indexComic++
 }
 
-// do { 
-//   crearComic()
+do { 
+  crearComic()
 
-// } while (confirm("Desea ingresar otro producto?"));;
-// comics.forEach((el) =>{
-//   console.log('Titulo: ' + el.titulo + '\n' + 
-// 'Precio: ' + "$"+ el.precio)
-// })
+} while (confirm("Desea ingresar otro producto?"));;
+comics.forEach((el) =>{
+  console.log('Titulo: ' + el.titulo + '\n' + 
+'Precio: ' + "$"+ el.precio)
+})
 
 const options = {
   style: 'currency',
