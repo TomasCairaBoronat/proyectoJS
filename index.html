@@ -54,22 +54,23 @@
                                     <h5 class="modal-title" id="exampleModalLabel">Registro usuario</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
-                                <form>
-                                  <div class="modal-body">
+                                <div class="modal-body">
+                                  <div id="datosIngresadosUsuario"></div>
+                                  <form  id="form1">
                                       <section class="container registroUsuario" >
-                                        <h5 style="text-align: left;"><strong>Nombre:</strong></h2>
-                                          <div id="nombre"></div>
-                                          <h5><strong>Apellido:</strong></h5>
-                                          <div id="apellido"></div>
-                                          <h5><strong>Edad:</strong></h5>
-                                          <div id="edad"></div>
-                                          <h5><strong>Mail:</strong></h5>
-                                          <div id="mail"></div>
+                                          <label for="nombreUsuario" class="form-label"><strong>Nombre:</strong></label>
+                                          <input class="form-control dataUsuario" id="nombreUsuario" type="text" placeholder="Ingrese su nombre" required minlength="3">
+                                          <label for="apellidoUsuario" class="form-label"><strong>Apellido:</strong></label>
+                                          <input class="form-control dataUsuario" id="apellidoUsuario" type="text" placeholder="Ingrese su apellido" required minlength="3">
+                                          <label for="edadUsuario" class="form-label"><strong>Edad:</strong></label>
+                                          <input class="form-control dataUsuario" id="edadUsuario" type="number" placeholder="Ingrese su edad" required min="1" max="99">
+                                          <label for="mailUsuario" class="form-label"><strong>Correo electronico:</strong></label>
+                                          <input type="email " name="multiple" class="form-control dataUsuario" id="mailUsuario" placeholder="nombre@mail.com" required minlength="5">
                                       </section>
                                       
                                   </div>
                                   <div class="modal-footer footerModals">
-                                      <button type="submit" class="btn botones">Submit</button>
+                                      <button type="submit"  class="btn botones" id="submit" >Registrarse</button>
                                       <button type="button" class="btn botones" data-bs-dismiss="modal">Cerrar</button>
                                   </div>
                                 </form>
@@ -109,12 +110,12 @@
     </header>
 
     <main>
-      <div class="alerta"></div>
+
         <div class="titulo">
             <h1>Bienvenido a Comic-Sans comics</h1><secondary><b>El mejor lugar para tus comics</b></secondary>
         </div>
         <div class="foto1Div container-fluid ">
-            <img class="foto1" src="./assets/comic-main.jpg" alt="Foto de spawn" height="auto" width="100%">
+            <img class="foto1" src="./assets/comic-main.jpg" alt="Foto de spawn" height=600px width=1500px>
 
         </div>
 

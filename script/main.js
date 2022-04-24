@@ -1,46 +1,12 @@
 
-
 //Declaracion de shortcuts
 
 let espacio = " ";
 const select  = el => document.querySelector(el);
 
-//Usuarios
-
 // Chequeo mail
 const mailRegEx = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 
-// Array de datos a ingresar:
-const datos = ['nombre','apellido', 'edad', 'mail']
-// Array donde ir guardando los usuarios:
-const usuarios = [];
-
-// Indice del array de usuarios:
-let index = 0;
-
-// Class Usuario:
-class Usuario {
-  constructor (nombre, apellido , edad, mail) {
-    this.nombre = nombre;
-    this.apellido = apellido;
-    this.edad = edad;
-    this.mail = mail;
-  }
-  mostrarDataUsuario() {
-
-    alert(
-      `Se han cargado sus datos en el menu personal`
-    )
-
-  }
-  convertirUsuario(){
-
-    this.nombre = this.nombre.toUpperCase();
-    this.apellido = this.apellido.toUpperCase();
-    this.mail = this.mail.toLowerCase()
-
-  }
-}
 // Metodos de validacion de datos ingresados.
 const validacionUsuarios = {
 
@@ -53,62 +19,61 @@ const validacionUsuarios = {
   mail: (input) => !input.match(mailRegEx)
 }
 
-// Funcion para ingresar datos de usuario:
-function ingresarDataUsuario(dato) {
+let form1 = select("#form1")
 
-  let input;
+form1.addEventListener("submit", validarFormulario);
+
+let submitBoton = select("#submit");
+
+let registroForm = select("registroUsuario");
+
+
+
+//data usuario
+
+let dataUsuario = document.getElementsByClassName("dataUsuario");
+let encabezadoModal = select(".encabezadoModals")
+let footerModal = select(".footerModals")
+
+function validarFormulario(e){
+  //Cancelamos el comportamiento del evento
+  e.preventDefault();
+  let nombreUpper = dataUsuario[0].value.toUpperCase();
   
-  do {
-    input = prompt("Ingrese su " + dato)
-
-  } while (validacionUsuarios[dato](input));
+  let apellidoUpper = dataUsuario[1].value.toUpperCase();
   
-  return input;
+  let edadInt = parseInt(dataUsuario[2].value);
+  
+  let mailLower = dataUsuario[3].value.toLowerCase();
+  
+  let usuario = { nombre: nombreUpper, apellido: apellidoUpper,edad: edadInt, mail: mailLower}
+  
+  let nombreYapellido = `${usuario.nombre}  ${usuario.apellido}`
 
-}
-
-// Funcion para crear un nuevo usuario:
-function crearUsuario() {
-
-  usuarios[index] = new Usuario();
-
-  for(let dato of datos){
-    usuarios[index][dato] = ingresarDataUsuario(dato)
-
+  if (usuario !== ""){
+    console.log(usuario);
+    encabezadoModal.innerHTML = `<h5 class="modal-title" id="exampleModalLabel">Perfil de ${nombreYapellido}</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>`
+    select("#datosIngresadosUsuario").innerHTML = `<p><strong>Nombre:</strong> ${usuario.nombre}</p>
+    <p><strong>Apellido:</strong> ${usuario.apellido}</p>
+    <p><strong>edad:</strong> ${usuario.edad}</p>
+    <p><strong>Correo Electronico:</strong> ${usuario.mail}</p>`
+    
+    form1.innerHTML = `<!-- <section class="container registroUsuario" >
+    <label for="nombreUsuario" class="form-label"><strong>Nombre:</strong></label>
+    <input class="form-control dataUsuario" id="nombreUsuario" type="text" placeholder="Ingrese su nombre" aria-label="default input example">
+    <label for="apellidoUsuario" class="form-label"><strong>Apellido:</strong></label>
+    <input class="form-control dataUsuario" id="apellidoUsuario" type="text" placeholder="Ingrese su apellido" aria-label="default input example">
+    <label for="edadUsuario" class="form-label"><strong>Edad:</strong></label>
+    <input class="form-control dataUsuario" id="edadUsuario" type="text" placeholder="Ingrese su edad" aria-label="default input example">
+    <label for="mailUsuario" class="form-label"><strong>Correo electronico:</strong></label>
+    <input type="email " class="form-control dataUsuario" id="mailUsuario" placeholder="nombre@mail.com">
+    </section> -->`
+    
+    footerModal.innerHTML = `<button type="submit"  class="btn botones" id="submit" disabled>Registrado</button>
+    <button type="button" class="btn botones" data-bs-dismiss="modal">Cerrar</button>`
   }
-  
-  usuarios[index].convertirUsuario();
-
-  usuarios[index].mostrarDataUsuario();
-  index++
 }
-crearUsuario(); 
- 
-for(let usuario of usuarios){
-  
-  select("#nombre").innerHTML = `<p>${usuario.nombre}</p>`;
-  
-  select("#apellido").innerHTML = `<p>${usuario.apellido}</p>`;
-  
-  select("#edad").innerHTML = `<p>${usuario.edad}</p>`;
-  
-  select("#mail").innerHTML = `<p>${usuario.mail}</p>`;
-
-}
-console.log(usuarios[0]);
-
-
-
-// do { 
-
-//   crearUsuario();
-
-// } while (index <= 4){
-
-//     alert("Felicidades"+ espacio + usuarios[4].nombre + espacio 
-//     +"eres nuestro cliente Nro 5, ¡has ganado un 10% de descuento en tu compra!");
-// }
-
 
 //Comics
 
@@ -181,14 +146,14 @@ function crearComic() {
   indexComic++
 }
 
-do { 
-  crearComic()
+// do { 
+//   crearComic()
 
-} while (indexComic <= 1);
-comics.forEach((el) =>{
-  console.log('Titulo: ' + el.titulo + '\n' + 
-'Precio: ' + "$"+ el.precio)
-})
+// } while (confirm("Desea ingresar otro producto?"));;
+// comics.forEach((el) =>{
+//   console.log('Titulo: ' + el.titulo + '\n' + 
+// 'Precio: ' + "$"+ el.precio)
+// })
 
 const options = {
   style: 'currency',
