@@ -32,19 +32,18 @@
                       
                     </ul>
                     <ul class="navbar-nav  mb-2 mb-lg-0">
+                      <li class="nav-item iconos pr-3"><a class="nav-link active" href="#" data-bs-toggle="modal" data-bs-target="#modalCarrito" >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="auto" fill="currentColor" class="bi bi-cart3" viewBox="0 0 16 16"> <title>Carrito</title>
+                            <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                          </svg>
+                        </a>
+                      </li>
                         <li class="nav-item iconos  px-3"><a class="nav-link active" href="#" data-bs-toggle="modal" data-bs-target="#modalUsuario"><svg xmlns="http://www.w3.org/2000/svg" width="25"
                               height="auto" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
                               <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
                               <path fill-rule="evenodd"
                                 d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
                             </svg></a> </li>
-
-                        <li class="nav-item iconos pr-3"><a class="nav-link active" href="#" data-bs-toggle="modal" data-bs-target="#modalCarrito" >
-                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="auto" fill="currentColor" class="bi bi-cart3" viewBox="0 0 16 16"> <title>Carrito</title>
-                                <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
-                              </svg>
-                            </a>
-                          </li>
                         </ul>
                       </div>
                       <div class="modal fade" id="modalUsuario" tabindex="-1" aria-labelledby="registroDeUsuario" style="display: none;" aria-hidden="true">
@@ -76,7 +75,7 @@
                                 </form>
                             </div>
                         </div>
-                    </div>
+                      </div>
                       <div class="modal fade" id="modalCarrito" tabindex="-1" aria-labelledby="exampleModalLabel" style="display: none;" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-scrollable">
                             <div class="modal-content ">
@@ -99,7 +98,7 @@
                                 </div>
                                 <div class="modal-footer footerModals">
                                   <button type="button" class="btn botones" data-bs-target="#">Comprar</button>
-                                    <button type="button" class="btn botones" data-bs-dismiss="modal">Cerrar</button>
+                                  <button type="button" class="btn botones" id="resumen" data-bs-target="#">Resumen</button>
                                 </div>
                             </div>
                         </div>
@@ -127,11 +126,11 @@
             <div class="card col-md-4 col-lg-3 mx-2 my-2" id="producto1" style="width: 18rem;">
               <img src="./assets/producto1.png" class="card-img-top" height="300px" width="auto" alt="THE BOYS ED. INTEGRAL 1">
               <div class="card-body">
-                <p class="card-title titulosComics" id="tituloProd1"><strong>THE BOYS ED. INTEGRAL 1</strong></p>
-                <p class="card-text">Considerado uno de los cómics más irreverentes de los últimos años, este cómic se ha convertido en todo un referente para los lectores que busquen un enfoque diferente...</p>
+                <p class="card-title titulosComics" id="tituloProd1"></p>
+                <p class="card-text" id="descriptionProd1"></p>
                 <div class="row">
                   <div class="col-md-6 col-lg-6 mt-3 " id="precioEnteroProd1">
-                    <p class="card-text textoPrecioProd"><strong>€<span id="precioProd1">35</span></strong></p>
+                    <p class="card-text textoPrecioProd"><strong>€<span id="precioProd1"></span></strong></p>
                    
                   </div>
                   <div class="col-md-6 col-lg-6 mt-3 ">
@@ -145,11 +144,11 @@
             <div class="card col-md-4 col-lg-3 mx-2 my-2" id="producto2" style="width: 18rem;">
               <img src="./assets/producto2_.png" class="card-img-top" height="300px" width="auto" alt="Stranger Things 1. El Otro Lado">
               <div class="card-body">
-                <h6 class="card-title titulosComics" id="tituloProd2"><strong>Stranger Things 1. El Otro Lado</strong></h6>
-                <p class="card-text">En este cómic, los seguidores de la serie descubrirán nuevos detalles de la historia, como lo que le pasó exactamente a Will Byers en el mundo del revés.</p>
+                <h6 class="card-title titulosComics" id="tituloProd2"><strong></strong></h6>
+                <p class="card-text" id="descriptionProd2"></p>
                 <div class="row">
                   <div class="col-md-6 col-lg-6 mt-4 pt-3 " id="precioEnteroProd2">
-                    <p class="card-text textoPrecioProd"><strong>€<span id="precioProd2">25</span></strong></p>
+                    <p class="card-text textoPrecioProd"><strong>€<span id="precioProd2"></span></strong></p>
                    
                   </div>
                   <div class="col-md-6 col-lg-6 mt-4 pt-2 ">
@@ -163,11 +162,11 @@
             <div class="card col-md-4 col-lg-3 mx-2 my-2" id="producto3" style="width: 18rem;">
               <img src="./assets/producto3.png" class="card-img-top" height="300px" width="auto" alt="THE BOYS ED. INTEGRAL 1">
               <div class="card-body">
-                <h6 class="card-title titulosComics" id="tituloProd3"><strong>Gunnm (Battle Angel Alita) 1</strong></h6>
-                <p class="card-text">Si aún no te has acercado al manga, este cómic debe ser tu primera opción.</p>
+                <h6 class="card-title titulosComics" id="tituloProd3"><strong></strong></h6>
+                <p class="card-text" id="descriptionProd3" ></p>
                 <div class="row">
                   <div class="col-md-6 col-lg-6 mt-5 pt-5 " id="precioEnteroProd3">
-                    <p class="card-text textoPrecioProd"><strong>€<span id="precioProd3">15</span></strong></p>
+                    <p class="card-text textoPrecioProd"><strong>€<span id="precioProd3"></span></strong></p>
                    
                   </div>
                   <div class="col-md-6 col-lg-6 mt-5 pt-5 ">
@@ -181,11 +180,11 @@
             <div class="card col-md-4 col-lg-3 mx-2 my-2" id="producto4" style="width: 18rem;">
               <img src="./assets/producto4.png" class="card-img-top" height="300px" width="auto" alt="THE BOYS ED. INTEGRAL 1">
               <div class="card-body">
-                <h6 class="card-title titulosComics" id="tituloProd4"><strong>Lo que más me gusta son los monstruos (Reservoir Gráfica)</strong></h6>
-                <p class="card-text">Considerado uno de los cómics más irreverentes de los últimos años, este cómic se ha convertido en todo un referente para los lectores que busquen un enfoque diferente...</p>
+                <h6 class="card-title titulosComics" id="tituloProd4"><strong></strong></h6>
+                <p class="card-text" id="descriptionProd4"></p>
                 <div class="row">
                   <div class="col-md-6 col-lg-6 " id="precioEnteroProd4">
-                    <p class="card-text textoPrecioProd"><strong>€<span id="precioProd4">28</span></strong></p>
+                    <p class="card-text textoPrecioProd"><strong>€<span id="precioProd4"></span></strong></p>
                    
                   </div>
                   <div class="col-md-6 col-lg-6 ">

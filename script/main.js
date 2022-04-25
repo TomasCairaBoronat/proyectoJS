@@ -63,73 +63,112 @@ function validarFormulario(e){
     <button type="button" class="btn botones" data-bs-dismiss="modal">Cerrar</button>`
   }
 }
-
-const comicsPrecio = []
-const comics = []
 //Comics
+const comicsDisponibles = []
+const comicsCarrito = []
+index = 0
+// Clase Comic:
+class Comic {
+  
+  constructor (titulo,descripcion,precio) {
+    
+    this.titulo = titulo;
+    this.descripcion = descripcion
+    this.precio = precio;
+  }
+}
+class ComicCarrito{
+  constructor (titulo,precio) {
+    
+    this.titulo = titulo;
+    this.precio = precio;
+  }
+}
+//Comic1
+let comic1 = new Comic("THE BOYS ED. INTEGRAL 1","Considerado uno de los cómics más irreverentes de los últimos años, este cómic se ha convertido en todo un referente para los lectores que busquen un enfoque diferente...",35);
+comicsDisponibles.push(comic1);
+let comic1Carrito = new ComicCarrito(comic1.titulo,comic1.precio)
+let tituloComic1 = select("#tituloProd1")
+let descriptionComic1 = select("#descriptionProd1")
+let precioComic1 = select("#precioProd1")
+tituloComic1.innerHTML = `<strong>${comic1.titulo}</strong>`
+descriptionComic1.innerText = `${comic1.descripcion}`
+precioComic1.innerText = `${comic1.precio}`
+
+//Comic2
+let comic2 = new Comic("Stranger Things 1. El Otro Lado","En este cómic, los seguidores de la serie descubrirán nuevos detalles de la historia, como lo que le pasó exactamente a Will Byers en el mundo del revés.",25);
+comicsDisponibles.push(comic2);
+let comic2Carrito = new ComicCarrito(comic2.titulo,comic2.precio)
+let tituloComic2 = select("#tituloProd2")
+let descriptionComic2 = select("#descriptionProd2")
+let precioComic2 = select("#precioProd2")
+tituloComic2.innerHTML = `<strong>${comic2.titulo}</strong>`
+descriptionComic2.innerText = `${comic2.descripcion}`
+precioComic2.innerText = `${comic2.precio}`
+
+//Comic3
+let comic3 = new Comic("Gunnm (Battle Angel Alita) 1","Si aún no te has acercado al manga, este cómic debe ser tu primera opción.",15);
+comicsDisponibles.push(comic3);
+let comic3Carrito = new ComicCarrito(comic3.titulo,comic3.precio)
+let tituloComic3 = select("#tituloProd3")
+let descriptionComic3 = select("#descriptionProd3")
+let precioComic3 = select("#precioProd3")
+tituloComic3.innerHTML = `<strong>${comic3.titulo}</strong>`
+descriptionComic3.innerText = `${comic3.descripcion}`
+precioComic3.innerText = `${comic3.precio}`
+
+//Comic4
+let comic4 =new Comic("Lo que más me gusta son los monstruos (Reservoir Gráfica)","Fue galardonada con el premio de Mejor Cómic Internacional del Salón Internacional del Cómic de Barcelona 2019, este se ha convertido en una obra de culto.",28);
+comicsDisponibles.push(comic4);
+let comic4Carrito = new ComicCarrito(comic4.titulo,comic4.precio)
+let tituloComic4 = select("#tituloProd4")
+let descriptionComic4 = select("#descriptionProd4")
+let precioComic4 = select("#precioProd4")
+tituloComic4.innerHTML = `<strong>${comic4.titulo}</strong>`
+descriptionComic4.innerText = `${comic4.descripcion}`
+precioComic4.innerText = `${comic4.precio}`
+
+console.log(comicsDisponibles);
+console.log(comicsCarrito);
 let resumenCompra = select("#resumenCompra")
-//comic1
+//comicBoton1
 let botonComic1 = select("#botonComic1")
 botonComic1.onclick = () => {
-  let tituloComic1 = select("#tituloProd1")
-  let precioComic1 = select("#precioProd1")
-  let precioEnteroComic1 = select("#precioEnteroProd1")
-  let comic1 = {titulo: tituloComic1.innerText, precio: precioComic1.innerText}
-  comics.push(comic1)
-  comicsPrecio.push(parseInt(comic1.precio))
+  comicsCarrito.push(comic1Carrito)
   let liComic1 = document.createElement("li");
-  liComic1.innerHTML = `<strong>${comic1.titulo}:</strong>${precioEnteroComic1.innerHTML}`
+  liComic1.innerHTML = `<strong>${comic1Carrito.titulo}:</strong> <strong>€${(parseInt(comic1Carrito.precio))}</strong>`
   resumenCompra.append(liComic1)
 }
-//comic2
+//comicBoton2
 let botonComic2 = select("#botonComic2")
 botonComic2.onclick = () => {
-  let tituloComic2 = select("#tituloProd2")
-  let precioComic2 = select("#precioProd2")
-  let precioEnteroComic2 = select("#precioEnteroProd2")
-  let comic2 = {titulo: tituloComic2.innerText, precio: precioComic2.innerText}
-  comics.push(comic2)
-  comicsPrecio.push(parseInt(comic2.precio))
+  comicsCarrito.push(comic2Carrito)
   let liComic2 = document.createElement("li");
-  liComic2.innerHTML = `<strong>${comic2.titulo}:</strong>${precioEnteroComic2.innerHTML}`
+  liComic2.innerHTML = `<strong>${comic2Carrito.titulo}:</strong> <strong>€${(parseInt(comic2Carrito.precio))}</strong>`
   resumenCompra.append(liComic2)
 }
-//comic3
+//comicBoton3
 let botonComic3 = select("#botonComic3")
 botonComic3.onclick = () => {
-  let tituloComic3 = select("#tituloProd3")
-  let precioComic3 = select("#precioProd3")
-  let precioEnteroComic3 = select("#precioEnteroProd3")
-  let comic3 = {titulo: tituloComic3.innerText, precio: precioComic3.innerText}
-  comics.push(comic3)
-  comicsPrecio.push(parseInt(comic3.precio))
+  comicsCarrito.push(comic3Carrito)
   let liComic3 = document.createElement("li");
-  liComic3.innerHTML = `<strong>${comic3.titulo}:</strong>${precioEnteroComic3.innerHTML}`
+  liComic3.innerHTML = `<strong>${comic3Carrito.titulo}:</strong> <strong>€${(parseInt(comic3Carrito.precio))}</strong>`
   resumenCompra.append(liComic3)
 }
-//comic4
+//comicBoton4
 let botonComic4 = select("#botonComic4")
 
 botonComic4.onclick = () => {
-  let tituloComic4 = select("#tituloProd4")
-  let precioComic4 = select("#precioProd4")
-  let precioEnteroComic4 = select("#precioEnteroProd4")
-  let comic4 = {titulo: tituloComic4.innerText, precio: precioComic4.innerText}
-  comics.push(comic4)
-  comicsPrecio.push(parseInt(comic4.precio))
+  comicsCarrito.push(comic4Carrito)
   let liComic4 = document.createElement("li");
-  liComic4.innerHTML = `<strong>${comic4.titulo}:</strong>${precioEnteroComic4.innerHTML}`
+  liComic4.innerHTML = `<strong>${comic4Carrito.titulo}:</strong> <strong>€${(parseInt(comic4Carrito.precio))}</strong>`
   resumenCompra.append(liComic4)
-  
 }
-console.log(comicsPrecio);
-console.log(comics)
-
 const options = {
   style: 'currency',
-  currency: 'ARS'
+  currency: 'EUR'
 }
-const formatPrice = price => price.toLocaleString('es-AR', options);
+const formatPrice = price => price.toLocaleString('es-ES');
 
 function calcularPorcentaje (porcentaje) {
   return function (precio) {
@@ -139,29 +178,31 @@ function calcularPorcentaje (porcentaje) {
 }
 
 // //Funcion Precio
-let precioTotalCompra = comics.reduce((acc,el) => acc + parseInt(el.precio),0)
+let botonResumen = select("#resumen");
+botonResumen.onclick = () =>{
+  let precioTotalCompra = comicsCarrito.reduce((acc,el) => acc + el.precio,0)
 
-while (precioTotalCompra != 0){
+  if (precioTotalCompra != 0){
+     let descuento10 = calcularPorcentaje(-10);
+    
+        let precioConDescuento = descuento10(precioTotalCompra) ;
+    
+        let iva = calcularPorcentaje(21);
+    
+        let precioFinal = iva(precioConDescuento);
+        
+        console.log("Precio total:" + espacio + precioFinal);
+        
+        select("#descuentos").innerHTML = `<p><strong>10% off: €${formatPrice(precioTotalCompra * 0.10)}</strong></p>`;
+        
+        
+        select("#impuestos").innerHTML = `<p><strong>IVA: €${formatPrice(precioTotalCompra * 0.21)}</strong></p>`;
+        
+        
+        select("#totalPrecio").innerHTML = `<p><strong>€${formatPrice(precioFinal)}</strong></p>`
+   }   
+}
 
-   let descuento10 = calcularPorcentaje(-10);
-  
-      let precioConDescuento = descuento10(precioTotalCompra) ;
-  
-      let iva = calcularPorcentaje(21);
-  
-      let precioFinal = iva(precioConDescuento);
-      
-      console.log("Precio total:" + espacio + formatPrice(precioFinal));
-      let carrito = document.querySelector("#resumenCompra")
-      
-      select("#descuentos").innerHTML = `<p>10% off: ${formatPrice(precioTotalCompra * 0.10)}</p>`;
-      
-      
-      select("#impuestos").innerHTML = `<p>IVA: ${formatPrice(precioTotalCompra * 0.21)}</p>`;
-      
-      
-      select("#totalPrecio").innerHTML = `<p>${formatPrice(precioFinal)}</p>`
- }   
 
 
 
