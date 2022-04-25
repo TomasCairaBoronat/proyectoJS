@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap");
 body {
-  font-family: 'Comic Neue', cursive; }
+  font-family: 'Comic Neue', cursive;
+  margin: 0; }
 
 .navbar {
   background-color: #dd0000; }
@@ -30,3 +31,18 @@ body {
 
 .footerModals {
   background-color: red; }
+
+.comicsHTML {
+  justify-content: center; }
+
+#precioProd1 {
+  align-self: center;
+  align-items: center;
+  justify-self: center; }
+
+.textoPrecioProd {
+  font-size: large;
+  padding-left: 15%; }
+
+.botonProducto {
+  background-color: #ff0303; }

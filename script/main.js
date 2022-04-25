@@ -7,17 +7,6 @@ const select  = el => document.querySelector(el);
 // Chequeo mail
 const mailRegEx = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 
-// Metodos de validacion de datos ingresados.
-const validacionUsuarios = {
-
-  nombre: (input) => input.length < 3,
-  
-  apellido: (input) => input.length < 3,
-
-  edad: (input) => isNaN(input) || input > 100 || input == "" ,
-
-  mail: (input) => !input.match(mailRegEx)
-}
 
 let form1 = select("#form1")
 
@@ -50,7 +39,7 @@ function validarFormulario(e){
   
   let nombreYapellido = `${usuario.nombre}  ${usuario.apellido}`
 
-  if (usuario !== ""){
+  if (usuario != ""){
     console.log(usuario);
     encabezadoModal.innerHTML = `<h5 class="modal-title" id="exampleModalLabel">Perfil de ${nombreYapellido}</h5>
     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>`
@@ -70,90 +59,71 @@ function validarFormulario(e){
     <input type="email " class="form-control dataUsuario" id="mailUsuario" placeholder="nombre@mail.com">
     </section> -->`
     
-    footerModal.innerHTML = `<button type="submit"  class="btn botones" id="submit" disabled>Registrado</button>
+    footerModal.innerHTML = `<button type="submit"  class="btn botones" id="submit" disabled>Registrado!</button>
     <button type="button" class="btn botones" data-bs-dismiss="modal">Cerrar</button>`
   }
 }
 
+const comicsPrecio = []
+const comics = []
 //Comics
-
-
-// Array de datos comics:
-const datosComic = ['titulo', 'precio'];
-
-// Array donde ir guardando los comics:
-const comics = [];
-
-// Indice del array de comics:
-let indexComic = 0;
-
-// Clase Comic:
-class Comic {
-  
-  constructor (titulo,precio) {
-    
-    this.titulo = titulo;
-
-    this.precio = precio;
-
-  }
-  
-  mostrarDataComic() {
-    alert(
-      'Titulo: ' + this.titulo + '\n' + 
-      'Precio: ' + "$"+ this.precio
-    )
-  }
-  pasarAMayuscula(){
-    this.titulo = this.titulo.toUpperCase();
-  }
+let resumenCompra = select("#resumenCompra")
+//comic1
+let botonComic1 = select("#botonComic1")
+botonComic1.onclick = () => {
+  let tituloComic1 = select("#tituloProd1")
+  let precioComic1 = select("#precioProd1")
+  let precioEnteroComic1 = select("#precioEnteroProd1")
+  let comic1 = {titulo: tituloComic1.innerText, precio: precioComic1.innerText}
+  comics.push(comic1)
+  comicsPrecio.push(parseInt(comic1.precio))
+  let liComic1 = document.createElement("li");
+  liComic1.innerHTML = `<strong>${comic1.titulo}:</strong>${precioEnteroComic1.innerHTML}`
+  resumenCompra.append(liComic1)
 }
-
-// Metodos de validacion de datos ingresados.
-const validacionComics = {
-
-  titulo: (input) => input.length < 3,
-
-  precio: (input) => isNaN(input) || input <= 0,
-
+//comic2
+let botonComic2 = select("#botonComic2")
+botonComic2.onclick = () => {
+  let tituloComic2 = select("#tituloProd2")
+  let precioComic2 = select("#precioProd2")
+  let precioEnteroComic2 = select("#precioEnteroProd2")
+  let comic2 = {titulo: tituloComic2.innerText, precio: precioComic2.innerText}
+  comics.push(comic2)
+  comicsPrecio.push(parseInt(comic2.precio))
+  let liComic2 = document.createElement("li");
+  liComic2.innerHTML = `<strong>${comic2.titulo}:</strong>${precioEnteroComic2.innerHTML}`
+  resumenCompra.append(liComic2)
 }
-
-// Funcion para ingresar datos de comic:
-function ingresarDataComic(datosComic) {
-
-  let input;
-  
-  do {
-    input = prompt("Ingrese su " + datosComic)
-
-  } while (validacionComics[datosComic](input));
-  
-  return input
+//comic3
+let botonComic3 = select("#botonComic3")
+botonComic3.onclick = () => {
+  let tituloComic3 = select("#tituloProd3")
+  let precioComic3 = select("#precioProd3")
+  let precioEnteroComic3 = select("#precioEnteroProd3")
+  let comic3 = {titulo: tituloComic3.innerText, precio: precioComic3.innerText}
+  comics.push(comic3)
+  comicsPrecio.push(parseInt(comic3.precio))
+  let liComic3 = document.createElement("li");
+  liComic3.innerHTML = `<strong>${comic3.titulo}:</strong>${precioEnteroComic3.innerHTML}`
+  resumenCompra.append(liComic3)
 }
+//comic4
+let botonComic4 = select("#botonComic4")
 
-// Funcion para crear un nuevo comic:
-function crearComic() {
-
-  comics[indexComic] = new Comic();
-
+botonComic4.onclick = () => {
+  let tituloComic4 = select("#tituloProd4")
+  let precioComic4 = select("#precioProd4")
+  let precioEnteroComic4 = select("#precioEnteroProd4")
+  let comic4 = {titulo: tituloComic4.innerText, precio: precioComic4.innerText}
+  comics.push(comic4)
+  comicsPrecio.push(parseInt(comic4.precio))
+  let liComic4 = document.createElement("li");
+  liComic4.innerHTML = `<strong>${comic4.titulo}:</strong>${precioEnteroComic4.innerHTML}`
+  resumenCompra.append(liComic4)
   
-  datosComic.forEach((datoComic) => {
-    comics[indexComic][datoComic] = ingresarDataComic(datoComic)
-  })
-
-  comics[indexComic].pasarAMayuscula();
-
-  indexComic++
 }
-
-do { 
-  crearComic()
-
-} while (confirm("Desea ingresar otro producto?"));;
-comics.forEach((el) =>{
-  console.log('Titulo: ' + el.titulo + '\n' + 
-'Precio: ' + "$"+ el.precio)
-})
+console.log(comicsPrecio);
+console.log(comics)
 
 const options = {
   style: 'currency',
@@ -168,13 +138,11 @@ function calcularPorcentaje (porcentaje) {
   }
 }
 
+// //Funcion Precio
 let precioTotalCompra = comics.reduce((acc,el) => acc + parseInt(el.precio),0)
 
+while (precioTotalCompra != 0){
 
-// //Funcion Precio
-
- if (precioTotalCompra != 0){
-   
    let descuento10 = calcularPorcentaje(-10);
   
       let precioConDescuento = descuento10(precioTotalCompra) ;
@@ -185,11 +153,6 @@ let precioTotalCompra = comics.reduce((acc,el) => acc + parseInt(el.precio),0)
       
       console.log("Precio total:" + espacio + formatPrice(precioFinal));
       let carrito = document.querySelector("#resumenCompra")
-      for (const comic of comics) {
-        let li = document.createElement("li");
-        li.innerHTML = `${comic.titulo}: $${comic.precio}`;
-        carrito.append(li);
-      }
       
       select("#descuentos").innerHTML = `<p>10% off: ${formatPrice(precioTotalCompra * 0.10)}</p>`;
       
@@ -197,7 +160,7 @@ let precioTotalCompra = comics.reduce((acc,el) => acc + parseInt(el.precio),0)
       select("#impuestos").innerHTML = `<p>IVA: ${formatPrice(precioTotalCompra * 0.21)}</p>`;
       
       
-      select("#totalPrecio").innerHTML = `<p>${formatPrice(precioTotalCompra)}</p>`
+      select("#totalPrecio").innerHTML = `<p>${formatPrice(precioFinal)}</p>`
  }   
 
 
