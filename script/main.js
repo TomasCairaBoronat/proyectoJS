@@ -45,7 +45,7 @@ function validarFormulario(e){
     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>`
     select("#datosIngresadosUsuario").innerHTML = `<p><strong>Nombre:</strong> ${usuario.nombre}</p>
     <p><strong>Apellido:</strong> ${usuario.apellido}</p>
-    <p><strong>edad:</strong> ${usuario.edad}</p>
+    <p><strong>Edad:</strong> ${usuario.edad}</p>
     <p><strong>Correo Electronico:</strong> ${usuario.mail}</p>`
     
     form1.innerHTML = `<!-- <section class="container registroUsuario" >
@@ -196,7 +196,7 @@ botonResumen.onclick = () =>{
         select("#descuentos").innerHTML = `<p><strong>10% off: €${formatPrice(precioTotalCompra * 0.10)}</strong></p>`;
         
         
-        select("#impuestos").innerHTML = `<p><strong>IVA: €${formatPrice(precioTotalCompra * 0.21)}</strong></p>`;
+        select("#impuestos").innerHTML = `<p><strong>IVA (21%): €${formatPrice(precioTotalCompra * 0.21)}</strong></p>`;
         
         
         select("#totalPrecio").innerHTML = `<p><strong>€${formatPrice(precioFinal)}</strong></p>`
