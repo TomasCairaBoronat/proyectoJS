@@ -66,57 +66,72 @@ function validarFormulario(e){
 //Comics
 const comicsDisponibles = []
 const comicsCarrito = []
-index = 0
+const botonFlexFlow = []
 // Clase Comic:
 class Comic {
   
-  constructor (titulo,descripcion,precio) {
-    
+  constructor (id,titulo,descripcion,precio,image) {
+    this.id = id
     this.titulo = titulo;
     this.descripcion = descripcion
     this.precio = precio;
+    this.image = image;
   }
 }
 //Comic1
-let comic1 = new Comic("THE BOYS ED. INTEGRAL 1","Considerado uno de los cómics más irreverentes de los últimos años, este cómic se ha convertido en todo un referente para los lectores que busquen un enfoque diferente...",35);
+let comic1 = new Comic(1,"THE BOYS ED. INTEGRAL 1","Considerado uno de los cómics más irreverentes de los últimos años, este cómic se ha convertido en todo un referente para los lectores que busquen un enfoque diferente...",35,"./assets/producto1.png");
 comicsDisponibles.push(comic1);
-let tituloComic1 = select("#tituloProd1")
-let descriptionComic1 = select("#descriptionProd1")
-let precioComic1 = select("#precioProd1")
-tituloComic1.innerHTML = `<strong>${comic1.titulo}</strong>`
-descriptionComic1.innerText = `${comic1.descripcion}`
-precioComic1.innerText = `${comic1.precio}`
+
 
 //Comic2
-let comic2 = new Comic("Stranger Things 1. El Otro Lado","En este cómic, los seguidores de la serie descubrirán nuevos detalles de la historia, como lo que le pasó exactamente a Will Byers en el mundo del revés.",25);
+let comic2 = new Comic(2,"Stranger Things 1. El Otro Lado","En este cómic, los seguidores de la serie descubrirán nuevos detalles de la historia, como lo que le pasó exactamente a Will Byers en el mundo del revés.",25,"./assets/producto2.png");
 comicsDisponibles.push(comic2);
-let tituloComic2 = select("#tituloProd2")
-let descriptionComic2 = select("#descriptionProd2")
-let precioComic2 = select("#precioProd2")
-tituloComic2.innerHTML = `<strong>${comic2.titulo}</strong>`
-descriptionComic2.innerText = `${comic2.descripcion}`
-precioComic2.innerText = `${comic2.precio}`
+
 
 //Comic3
-let comic3 = new Comic("Gunnm (Battle Angel Alita) 1","Si aún no te has acercado al manga, este cómic debe ser tu primera opción.",15);
+let comic3 = new Comic(3,"Gunnm (Battle Angel Alita) 1","Si aún no te has acercado al manga, este cómic debe ser tu primera opción.",15,"./assets/producto3.png");
 comicsDisponibles.push(comic3);
-let tituloComic3 = select("#tituloProd3")
-let descriptionComic3 = select("#descriptionProd3")
-let precioComic3 = select("#precioProd3")
-tituloComic3.innerHTML = `<strong>${comic3.titulo}</strong>`
-descriptionComic3.innerText = `${comic3.descripcion}`
-precioComic3.innerText = `${comic3.precio}`
 
 //Comic4
-let comic4 =new Comic("Lo que más me gusta son los monstruos (Reservoir Gráfica)","Fue galardonada con el premio de Mejor Cómic Internacional del Salón Internacional del Cómic de Barcelona 2019, este se ha convertido en una obra de culto.",28);
+let comic4 =new Comic(4,"Lo que más me gusta son los monstruos (Reservoir Gráfica)","Fue galardonada con el premio de Mejor Cómic Internacional del Salón Internacional del Cómic de Barcelona 2019, este se ha convertido en una obra de culto.",28,"./assets/producto4.png");
 comicsDisponibles.push(comic4);
-let tituloComic4 = select("#tituloProd4")
-let descriptionComic4 = select("#descriptionProd4")
-let precioComic4 = select("#precioProd4")
-tituloComic4.innerHTML = `<strong>${comic4.titulo}</strong>`
-descriptionComic4.innerText = `${comic4.descripcion}`
-precioComic4.innerText = `${comic4.precio}`
-
+  
+for (let comics of comicsDisponibles) {
+  let card = document.createElement("div");
+  card.setAttribute("class","card col-md-4 col-lg-3 mx-2 my-2")
+  card.setAttribute("style","width: 18rem;")
+  
+  card.innerHTML = `
+  
+                <img src="${comics.image}" class="card-img-top" height="300px" width="auto" alt="THE BOYS ED. INTEGRAL 1">
+  
+                <div class="card-body">
+  
+                  <p class="card-title titulosComics" id="tituloProd1"><strong>${comics.titulo}</strong></p>
+  
+                  <p class="card-text" id="descriptionProd1"><strong>${comics.descripcion}</strong></p>
+  
+                  <div class="flowComic${comics.id}">
+                  
+                      <p class="card-text precioProd${comics.id} textoPrecioProd"><strong>€<span id="precioProd1">${comics.precio}</span></strong></p>
+  
+                    <div   id="boton">
+  
+                      <button type="submit" id=botonComic${comics.id} class="btn botonProducto">Comprar</button>
+  
+  
+                    </div>
+  
+                    
+  
+                  </div>
+  
+                </div>`;
+  
+  
+  select(".comicsHTML").appendChild(card);
+  
+  } 
 console.log(comicsDisponibles);
 console.log(comicsCarrito);
 let resumenCompra = select("#resumenCompra")

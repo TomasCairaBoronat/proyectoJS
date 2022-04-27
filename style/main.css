@@ -46,3 +46,38 @@ body {
 
 .botonProducto {
   background-color: #ff0303; }
+
+.flowComic1 {
+  display: flex;
+  flex-flow: row wrap;
+  align-content: center;
+  justify-content: center;
+  margin-top: 20%; }
+  .flowComic1 .precioProd1 {
+    padding-right: 30%; }
+
+.flowComic2 {
+  display: flex;
+  flex-flow: row wrap;
+  align-content: center;
+  justify-content: center;
+  margin-top: 30%; }
+  .flowComic2 .precioProd2 {
+    padding-right: 30%; }
+
+.flowComic3 {
+  display: flex;
+  flex-flow: row wrap;
+  align-content: center;
+  justify-content: center;
+  margin-top: 50%; }
+  .flowComic3 .precioProd3 {
+    padding-right: 30%; }
+
+.flowComic4 {
+  display: flex;
+  flex-flow: row wrap;
+  align-content: center;
+  justify-content: center; }
+  .flowComic4 .precioProd4 {
+    padding-right: 30%; }
