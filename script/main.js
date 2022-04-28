@@ -79,45 +79,45 @@ class Comic {
   }
 }
 //Comic1
-let comic1 = new Comic(1,"THE BOYS ED. INTEGRAL 1","Considerado uno de los cómics más irreverentes de los últimos años, este cómic se ha convertido en todo un referente para los lectores que busquen un enfoque diferente...",35,"./assets/producto1.png");
+let comic1 = new Comic(1,"THE BOYS ED. INTEGRAL #1","Considerado uno de los cómics más irreverentes de los últimos años, este cómic se ha convertido en todo un referente para los lectores que busquen un enfoque diferente...",35,"./assets/producto1.png");
 comicsDisponibles.push(comic1);
 
 
 //Comic2
-let comic2 = new Comic(2,"Stranger Things 1. El Otro Lado","En este cómic, los seguidores de la serie descubrirán nuevos detalles de la historia, como lo que le pasó exactamente a Will Byers en el mundo del revés.",25,"./assets/producto2.png");
+let comic2 = new Comic(2,"Stranger Things #1: El Otro Lado","En este cómic, los seguidores de la serie descubrirán nuevos detalles de la historia, como lo que le pasó exactamente a Will Byers en el mundo del revés.",25,"./assets/producto2.png");
 comicsDisponibles.push(comic2);
 
 
 //Comic3
-let comic3 = new Comic(3,"Gunnm (Battle Angel Alita) 1","Si aún no te has acercado al manga, este cómic debe ser tu primera opción.",15,"./assets/producto3.png");
+let comic3 = new Comic(3,"Gunnm (Battle Angel Alita) #1","Si aún no te has acercado al manga, este cómic debe ser tu primera opción.",15,"./assets/producto3.png");
 comicsDisponibles.push(comic3);
 
 //Comic4
 let comic4 =new Comic(4,"Lo que más me gusta son los monstruos (Reservoir Gráfica)","Fue galardonada con el premio de Mejor Cómic Internacional del Salón Internacional del Cómic de Barcelona 2019, este se ha convertido en una obra de culto.",28,"./assets/producto4.png");
 comicsDisponibles.push(comic4);
   
-for (let comics of comicsDisponibles) {
+for (let comic of comicsDisponibles) {
   let card = document.createElement("div");
   card.setAttribute("class","card col-md-4 col-lg-3 mx-2 my-2")
   card.setAttribute("style","width: 18rem;")
   
   card.innerHTML = `
   
-                <img src="${comics.image}" class="card-img-top" height="300px" width="auto" alt="THE BOYS ED. INTEGRAL 1">
+                <img src="${comic.image}" class="card-img-top" height="300px" width="auto" alt="THE BOYS ED. INTEGRAL 1">
   
                 <div class="card-body">
   
-                  <p class="card-title titulosComics" id="tituloProd1"><strong>${comics.titulo}</strong></p>
+                  <p class="card-title titulosComics" id="tituloProd1"><strong>${comic.titulo}</strong></p>
   
-                  <p class="card-text" id="descriptionProd1"><strong>${comics.descripcion}</strong></p>
+                  <p class="card-text" id="descriptionProd1"><strong>${comic.descripcion}</strong></p>
   
-                  <div class="flowComic${comics.id}">
+                  <div class="flowComic${comic.id}">
                   
-                      <p class="card-text precioProd${comics.id} textoPrecioProd"><strong>€<span id="precioProd1">${comics.precio}</span></strong></p>
+                      <p class="card-text precioProd${comic.id} textoPrecioProd"><strong>€<span id="precioProd1">${comic.precio}</span></strong></p>
   
                     <div   id="boton">
   
-                      <button type="submit" id=botonComic${comics.id} class="btn botonProducto">Comprar</button>
+                      <button type="submit" id=botonComic${comic.id} class="btn botonProducto">Comprar</button>
   
   
                     </div>
@@ -138,7 +138,7 @@ let resumenCompra = select("#resumenCompra")
 //comicBoton1
 let botonComic1 = select("#botonComic1")
 botonComic1.onclick = () => {
-  comicsCarrito.push(comic1.precio)
+  comicsCarrito.push(comic1)
   let liComic1 = document.createElement("li");
   liComic1.innerHTML = `<strong>${comic1.titulo}:</strong> <strong>€${(parseInt(comic1.precio))}</strong>`
   resumenCompra.append(liComic1)
@@ -146,7 +146,7 @@ botonComic1.onclick = () => {
 //comicBoton2
 let botonComic2 = select("#botonComic2")
 botonComic2.onclick = () => {
-  comicsCarrito.push(comic2.precio)
+  comicsCarrito.push(comic2)
   let liComic2 = document.createElement("li");
   liComic2.innerHTML = `<strong>${comic2.titulo}:</strong> <strong>€${(parseInt(comic2.precio))}</strong>`
   resumenCompra.append(liComic2)
@@ -154,7 +154,7 @@ botonComic2.onclick = () => {
 //comicBoton3
 let botonComic3 = select("#botonComic3")
 botonComic3.onclick = () => {
-  comicsCarrito.push(comic3.precio)
+  comicsCarrito.push(comic3)
   let liComic3 = document.createElement("li");
   liComic3.innerHTML = `<strong>${comic3.titulo}:</strong> <strong>€${(parseInt(comic3.precio))}</strong>`
   resumenCompra.append(liComic3)
@@ -163,7 +163,7 @@ botonComic3.onclick = () => {
 let botonComic4 = select("#botonComic4")
 
 botonComic4.onclick = () => {
-  comicsCarrito.push(comic4.precio)
+  comicsCarrito.push(comic4)
   let liComic4 = document.createElement("li");
   liComic4.innerHTML = `<strong>${comic4.titulo}:</strong> <strong>€${(parseInt(comic4.precio))}</strong>`
   resumenCompra.append(liComic4)
@@ -180,11 +180,10 @@ function calcularPorcentaje (porcentaje) {
     return precio += calculoPorcentaje;
   }
 }
-
 // //Funcion Precio
 let botonResumen = select("#resumen");
 botonResumen.onclick = () =>{
-  let precioTotalCompra = comicsCarrito.reduce((acc,el) => acc + el,0)
+  let precioTotalCompra = comicsCarrito.reduce((acc,el) => acc + el.precio,0)
 
   if (precioTotalCompra != 0){
      let descuento10 = calcularPorcentaje(-10);
