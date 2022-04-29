@@ -1,8 +1,12 @@
 
 //Declaracion de shortcuts
 
+
+// localStorage.clear()
 let espacio = " ";
 const select  = el => document.querySelector(el);
+const guardarLocal = (clave, valor) => { localStorage.setItem(clave, valor) };
+const guardarSession = (clave, valor) => { sessionStorage.setItem(clave, valor) };
 
 // Chequeo mail
 const mailRegEx = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
@@ -23,25 +27,12 @@ let registroForm = select("registroUsuario");
 let dataUsuario = document.getElementsByClassName("dataUsuario");
 let encabezadoModal = select(".encabezadoModals")
 let footerModal = select(".footerModals")
-
-function validarFormulario(e){
-  //Cancelamos el comportamiento del evento
-  e.preventDefault();
-  let nombreUpper = dataUsuario[0].value.toUpperCase();
-  
-  let apellidoUpper = dataUsuario[1].value.toUpperCase();
-  
-  let edadInt = parseInt(dataUsuario[2].value);
-  
-  let mailLower = dataUsuario[3].value.toLowerCase();
-  
-  let usuario = { nombre: nombreUpper, apellido: apellidoUpper,edad: edadInt, mail: mailLower}
-  
-  let nombreYapellido = `${usuario.nombre}  ${usuario.apellido}`
-
+//Storage
+let usuarioAlmacenado = JSON.parse(localStorage.getItem("usuarioAlmacenado"))
+if (usuarioAlmacenado != null){
+  usuario = usuarioAlmacenado
   if (usuario != ""){
-    console.log(usuario);
-    encabezadoModal.innerHTML = `<h5 class="modal-title" id="exampleModalLabel">Perfil de ${nombreYapellido}</h5>
+    encabezadoModal.innerHTML = `<h5 class="modal-title" id="exampleModalLabel">Perfil de ${usuario.nombre} ${usuario.apellido}</h5>
     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>`
     select("#datosIngresadosUsuario").innerHTML = `<p><strong>Nombre:</strong> ${usuario.nombre}</p>
     <p><strong>Apellido:</strong> ${usuario.apellido}</p>
@@ -62,6 +53,50 @@ function validarFormulario(e){
     footerModal.innerHTML = `<button type="submit"  class="btn botones" id="submit" disabled>Registrado!</button>
     <button type="button" class="btn botones" data-bs-dismiss="modal">Cerrar</button>`
   }
+  console.log(usuario)
+}
+//formulario usuario
+function validarFormulario(e){
+  //Cancelamos el comportamiento del evento
+  e.preventDefault();
+  let nombreUpper = dataUsuario[0].value.toUpperCase();
+  
+  let apellidoUpper = dataUsuario[1].value.toUpperCase();
+  
+  let edadInt = parseInt(dataUsuario[2].value);
+  
+  let mailLower = dataUsuario[3].value.toLowerCase();
+  
+  let usuario = { nombre: nombreUpper, apellido: apellidoUpper,edad: edadInt, mail: mailLower};
+
+  //Storage
+  guardarLocal("usuarioAlmacenado", JSON.stringify(usuario));
+  
+
+  if (usuario != ""){
+    encabezadoModal.innerHTML = `<h5 class="modal-title" id="exampleModalLabel">Perfil de ${usuario.nombre} ${usuario.apellido}</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>`
+    select("#datosIngresadosUsuario").innerHTML = `<p><strong>Nombre:</strong> ${usuario.nombre}</p>
+    <p><strong>Apellido:</strong> ${usuario.apellido}</p>
+    <p><strong>Edad:</strong> ${usuario.edad}</p>
+    <p><strong>Correo Electronico:</strong> ${usuario.mail}</p>`
+    
+    form1.innerHTML = `<!-- <section class="container registroUsuario" >
+    <label for="nombreUsuario" class="form-label"><strong>Nombre:</strong></label>
+    <input class="form-control dataUsuario" id="nombreUsuario" type="text" placeholder="Ingrese su nombre" aria-label="default input example">
+    <label for="apellidoUsuario" class="form-label"><strong>Apellido:</strong></label>
+    <input class="form-control dataUsuario" id="apellidoUsuario" type="text" placeholder="Ingrese su apellido" aria-label="default input example">
+    <label for="edadUsuario" class="form-label"><strong>Edad:</strong></label>
+    <input class="form-control dataUsuario" id="edadUsuario" type="text" placeholder="Ingrese su edad" aria-label="default input example">
+    <label for="mailUsuario" class="form-label"><strong>Correo electronico:</strong></label>
+    <input type="email " class="form-control dataUsuario" id="mailUsuario" placeholder="nombre@mail.com">
+    </section> -->`
+    
+    footerModal.innerHTML = `<button type="submit"  class="btn botones" id="submit" disabled>Registrado!</button>
+    <button type="button" class="btn botones" data-bs-dismiss="modal">Cerrar</button>`
+  }
+  
+  
 }
 //Comics
 const comicsDisponibles = []
@@ -96,6 +131,7 @@ comicsDisponibles.push(comic3);
 let comic4 =new Comic(4,"Lo que más me gusta son los monstruos (Reservoir Gráfica)","Fue galardonada con el premio de Mejor Cómic Internacional del Salón Internacional del Cómic de Barcelona 2019, este se ha convertido en una obra de culto.",28,"./assets/producto4.png");
 comicsDisponibles.push(comic4);
   
+
 for (let comic of comicsDisponibles) {
   let card = document.createElement("div");
   card.setAttribute("class","card col-md-4 col-lg-3 mx-2 my-2")
@@ -168,6 +204,8 @@ botonComic4.onclick = () => {
   liComic4.innerHTML = `<strong>${comic4.titulo}:</strong> <strong>€${(parseInt(comic4.precio))}</strong>`
   resumenCompra.append(liComic4)
 }
+
+
 const options = {
   style: 'currency',
   currency: 'EUR'
