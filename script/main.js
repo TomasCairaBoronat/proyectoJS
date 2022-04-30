@@ -102,6 +102,7 @@ function validarFormulario(e){
 const comicsDisponibles = []
 const comicsCarrito = []
 const botonFlexFlow = []
+
 // Clase Comic:
 class Comic {
   
@@ -168,6 +169,18 @@ for (let comic of comicsDisponibles) {
   select(".comicsHTML").appendChild(card);
   
   } 
+  //Storage comic
+  let comicsAlmacenados = JSON.parse(localStorage.getItem("comicsAlmacenados"))
+  if (comicsAlmacenados != null){
+    for (let comicAlmacenado of comicsAlmacenados ){
+      let resumenCompra = select("#resumenCompra")
+      let liComic = document.createElement("li");
+      liComic.innerHTML = `<strong>${comicAlmacenado.titulo}:</strong> <strong>€${(parseInt(comicAlmacenado.precio))}</strong>`
+      resumenCompra.append(liComic)
+      comicsCarrito.push(comicAlmacenado)
+    }
+    console.log(comicsAlmacenados)
+  }
 console.log(comicsDisponibles);
 console.log(comicsCarrito);
 let resumenCompra = select("#resumenCompra")
@@ -175,34 +188,38 @@ let resumenCompra = select("#resumenCompra")
 let botonComic1 = select("#botonComic1")
 botonComic1.onclick = () => {
   comicsCarrito.push(comic1)
-  let liComic1 = document.createElement("li");
-  liComic1.innerHTML = `<strong>${comic1.titulo}:</strong> <strong>€${(parseInt(comic1.precio))}</strong>`
-  resumenCompra.append(liComic1)
+  let liComic = document.createElement("li");
+  liComic.innerHTML = `<strong>${comic1.titulo}:</strong> <strong>€${(parseInt(comic1.precio))}</strong>`
+  resumenCompra.append(liComic)
+  guardarLocal("comicsAlmacenados",JSON.stringify(comicsCarrito))
 }
 //comicBoton2
 let botonComic2 = select("#botonComic2")
 botonComic2.onclick = () => {
   comicsCarrito.push(comic2)
-  let liComic2 = document.createElement("li");
-  liComic2.innerHTML = `<strong>${comic2.titulo}:</strong> <strong>€${(parseInt(comic2.precio))}</strong>`
-  resumenCompra.append(liComic2)
+  let liComic = document.createElement("li");
+  liComic.innerHTML = `<strong>${comic2.titulo}:</strong> <strong>€${(parseInt(comic2.precio))}</strong>`
+  resumenCompra.append(liComic)
+  guardarLocal("comicsAlmacenados",JSON.stringify(comicsCarrito))
 }
 //comicBoton3
 let botonComic3 = select("#botonComic3")
 botonComic3.onclick = () => {
   comicsCarrito.push(comic3)
-  let liComic3 = document.createElement("li");
-  liComic3.innerHTML = `<strong>${comic3.titulo}:</strong> <strong>€${(parseInt(comic3.precio))}</strong>`
-  resumenCompra.append(liComic3)
+  let liComic = document.createElement("li");
+  liComic.innerHTML = `<strong>${comic3.titulo}:</strong> <strong>€${(parseInt(comic3.precio))}</strong>`
+  resumenCompra.append(liComic)
+  guardarLocal("comicsAlmacenados",JSON.stringify(comicsCarrito))
 }
 //comicBoton4
 let botonComic4 = select("#botonComic4")
 
 botonComic4.onclick = () => {
   comicsCarrito.push(comic4)
-  let liComic4 = document.createElement("li");
-  liComic4.innerHTML = `<strong>${comic4.titulo}:</strong> <strong>€${(parseInt(comic4.precio))}</strong>`
-  resumenCompra.append(liComic4)
+  let liComic = document.createElement("li");
+  liComic.innerHTML = `<strong>${comic4.titulo}:</strong> <strong>€${(parseInt(comic4.precio))}</strong>`
+  resumenCompra.append(liComic)
+  guardarLocal("comicsAlmacenados",JSON.stringify(comicsCarrito))
 }
 
 
