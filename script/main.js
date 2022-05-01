@@ -12,7 +12,7 @@ const guardarSession = (clave, valor) => { sessionStorage.setItem(clave, valor) 
 const mailRegEx = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 
 
-let form1 = select("#form1")
+let form1 = select("#form1");
 
 form1.addEventListener("submit", validarFormulario);
 
@@ -25,19 +25,19 @@ let registroForm = select("registroUsuario");
 //data usuario
 
 let dataUsuario = document.getElementsByClassName("dataUsuario");
-let encabezadoModal = select(".encabezadoModals")
-let footerModal = select(".footerModals")
+let encabezadoModal = select(".encabezadoModals");
+let footerModal = select(".footerModals");
 //Storage
-let usuarioAlmacenado = JSON.parse(localStorage.getItem("usuarioAlmacenado"))
+let usuarioAlmacenado = JSON.parse(localStorage.getItem("usuarioAlmacenado"));
 if (usuarioAlmacenado != null){
-  usuario = usuarioAlmacenado
+  usuario = usuarioAlmacenado;
   if (usuario != ""){
     encabezadoModal.innerHTML = `<h5 class="modal-title" id="exampleModalLabel">Perfil de ${usuario.nombre} ${usuario.apellido}</h5>
     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>`
     select("#datosIngresadosUsuario").innerHTML = `<p><strong>Nombre:</strong> ${usuario.nombre}</p>
     <p><strong>Apellido:</strong> ${usuario.apellido}</p>
     <p><strong>Edad:</strong> ${usuario.edad}</p>
-    <p><strong>Correo Electronico:</strong> ${usuario.mail}</p>`
+    <p><strong>Correo Electronico:</strong> ${usuario.mail}</p>`;
     
     form1.innerHTML = `<!-- <section class="container registroUsuario" >
     <label for="nombreUsuario" class="form-label"><strong>Nombre:</strong></label>
@@ -48,12 +48,12 @@ if (usuarioAlmacenado != null){
     <input class="form-control dataUsuario" id="edadUsuario" type="text" placeholder="Ingrese su edad" aria-label="default input example">
     <label for="mailUsuario" class="form-label"><strong>Correo electronico:</strong></label>
     <input type="email " class="form-control dataUsuario" id="mailUsuario" placeholder="nombre@mail.com">
-    </section> -->`
+    </section> -->`;
     
     footerModal.innerHTML = `<button type="submit"  class="btn botones" id="submit" disabled>Registrado!</button>
-    <button type="button" class="btn botones" data-bs-dismiss="modal">Cerrar</button>`
+    <button type="button" class="btn botones" data-bs-dismiss="modal">Cerrar</button>`;
   }
-  console.log(usuario)
+  console.log(usuario);
 }
 //formulario usuario
 function validarFormulario(e){
@@ -79,7 +79,7 @@ function validarFormulario(e){
     select("#datosIngresadosUsuario").innerHTML = `<p><strong>Nombre:</strong> ${usuario.nombre}</p>
     <p><strong>Apellido:</strong> ${usuario.apellido}</p>
     <p><strong>Edad:</strong> ${usuario.edad}</p>
-    <p><strong>Correo Electronico:</strong> ${usuario.mail}</p>`
+    <p><strong>Correo Electronico:</strong> ${usuario.mail}</p>`;
     
     form1.innerHTML = `<!-- <section class="container registroUsuario" >
     <label for="nombreUsuario" class="form-label"><strong>Nombre:</strong></label>
@@ -90,18 +90,18 @@ function validarFormulario(e){
     <input class="form-control dataUsuario" id="edadUsuario" type="text" placeholder="Ingrese su edad" aria-label="default input example">
     <label for="mailUsuario" class="form-label"><strong>Correo electronico:</strong></label>
     <input type="email " class="form-control dataUsuario" id="mailUsuario" placeholder="nombre@mail.com">
-    </section> -->`
+    </section> -->`;
     
     footerModal.innerHTML = `<button type="submit"  class="btn botones" id="submit" disabled>Registrado!</button>
-    <button type="button" class="btn botones" data-bs-dismiss="modal">Cerrar</button>`
+    <button type="button" class="btn botones" data-bs-dismiss="modal">Cerrar</button>`;
   }
   
   
 }
 //Comics
-const comicsDisponibles = []
-const comicsCarrito = []
-const botonFlexFlow = []
+const comicsDisponibles = [];
+const comicsCarrito = [];
+const botonFlexFlow = [];
 
 // Clase Comic:
 class Comic {
@@ -132,11 +132,11 @@ comicsDisponibles.push(comic3);
 let comic4 =new Comic(4,"Lo que más me gusta son los monstruos (Reservoir Gráfica)","Fue galardonada con el premio de Mejor Cómic Internacional del Salón Internacional del Cómic de Barcelona 2019, este se ha convertido en una obra de culto.",28,"./assets/producto4.png");
 comicsDisponibles.push(comic4);
   
-
+//Creacion cards
 for (let comic of comicsDisponibles) {
   let card = document.createElement("div");
-  card.setAttribute("class","card col-md-4 col-lg-3 mx-2 my-2")
-  card.setAttribute("style","width: 18rem;")
+  card.setAttribute("class","card col-md-4 col-lg-3 mx-2 my-2");
+  card.setAttribute("style","width: 18rem;");
   
   card.innerHTML = `
   
@@ -170,75 +170,30 @@ for (let comic of comicsDisponibles) {
   
   } 
   //Storage comic
-  let comicsAlmacenados = JSON.parse(localStorage.getItem("comicsAlmacenados"))
+  let comicsAlmacenados = JSON.parse(localStorage.getItem("comicsAlmacenados"));
   if (comicsAlmacenados != null){
     for (let comicAlmacenado of comicsAlmacenados ){
-      let resumenCompra = select("#resumenCompra")
+      let resumenCompra = select("#resumenCompra");
       let liComic = document.createElement("li");
-      liComic.innerHTML = `<strong>${comicAlmacenado.titulo}:</strong> <strong>€${(parseInt(comicAlmacenado.precio))}</strong>`
-      resumenCompra.append(liComic)
-      comicsCarrito.push(comicAlmacenado)
+      liComic.innerHTML = `<strong>${comicAlmacenado.titulo}:</strong> <strong>€${(parseInt(comicAlmacenado.precio))}</strong>`;
+      resumenCompra.append(liComic);
+      comicsCarrito.push(comicAlmacenado);
     }
-    console.log(comicsAlmacenados)
-  }
-console.log(comicsDisponibles);
-console.log(comicsCarrito);
-let resumenCompra = select("#resumenCompra")
-//comicBoton1
-let botonComic1 = select("#botonComic1")
-botonComic1.onclick = () => {
-  comicsCarrito.push(comic1)
-  let liComic = document.createElement("li");
-  liComic.innerHTML = `<strong>${comic1.titulo}:</strong> <strong>€${(parseInt(comic1.precio))}</strong>`
-  resumenCompra.append(liComic)
-  guardarLocal("comicsAlmacenados",JSON.stringify(comicsCarrito))
-}
-//comicBoton2
-let botonComic2 = select("#botonComic2")
-botonComic2.onclick = () => {
-  comicsCarrito.push(comic2)
-  let liComic = document.createElement("li");
-  liComic.innerHTML = `<strong>${comic2.titulo}:</strong> <strong>€${(parseInt(comic2.precio))}</strong>`
-  resumenCompra.append(liComic)
-  guardarLocal("comicsAlmacenados",JSON.stringify(comicsCarrito))
-}
-//comicBoton3
-let botonComic3 = select("#botonComic3")
-botonComic3.onclick = () => {
-  comicsCarrito.push(comic3)
-  let liComic = document.createElement("li");
-  liComic.innerHTML = `<strong>${comic3.titulo}:</strong> <strong>€${(parseInt(comic3.precio))}</strong>`
-  resumenCompra.append(liComic)
-  guardarLocal("comicsAlmacenados",JSON.stringify(comicsCarrito))
-}
-//comicBoton4
-let botonComic4 = select("#botonComic4")
 
-botonComic4.onclick = () => {
-  comicsCarrito.push(comic4)
-  let liComic = document.createElement("li");
-  liComic.innerHTML = `<strong>${comic4.titulo}:</strong> <strong>€${(parseInt(comic4.precio))}</strong>`
-  resumenCompra.append(liComic)
-  guardarLocal("comicsAlmacenados",JSON.stringify(comicsCarrito))
-}
+    const options = {
+      style: 'currency',
+      currency: 'EUR'
+    }
 
-
-const options = {
-  style: 'currency',
-  currency: 'EUR'
-}
-const formatPrice = price => price.toLocaleString('es-ES');
-
-function calcularPorcentaje (porcentaje) {
-  return function (precio) {
-    let calculoPorcentaje = (precio * porcentaje) / 100;
-    return precio += calculoPorcentaje;
-  }
-}
-// //Funcion Precio
-let botonResumen = select("#resumen");
-botonResumen.onclick = () =>{
-  let precioTotalCompra = comicsCarrito.reduce((acc,el) => acc + el.precio,0)
+    const formatPrice = price => price.toLocaleString('es-ES');
+    
+    function calcularPorcentaje (porcentaje) {
+      return function (precio) {
+        let calculoPorcentaje = (precio * porcentaje) / 100;
+        return precio += calculoPorcentaje;
+      }
+    }
+    let precioTotalCompra = comicsCarrito.reduce((acc,el) => acc + el.precio,0);
 
   if (precioTotalCompra != 0){
      let descuento10 = calcularPorcentaje(-10);
@@ -257,7 +212,86 @@ botonResumen.onclick = () =>{
         select("#impuestos").innerHTML = `<p><strong>IVA (21%): €${formatPrice(precioTotalCompra * 0.21)}</strong></p>`;
         
         
-        select("#totalPrecio").innerHTML = `<p><strong>€${formatPrice(precioFinal)}</strong></p>`
+        select("#totalPrecio").innerHTML = `<p><strong>€${formatPrice(precioFinal)}</strong></p>`;
+   }   
+  }
+console.log(comicsDisponibles);
+console.log(comicsCarrito);
+let resumenCompra = select("#resumenCompra");
+//comicBoton1
+let botonComic1 = select("#botonComic1");
+botonComic1.onclick = () => {
+  comicsCarrito.push(comic1)
+  let liComic = document.createElement("li");
+  liComic.innerHTML = `<strong>${comic1.titulo}:</strong> <strong>€${(parseInt(comic1.precio))}</strong>`;
+  resumenCompra.append(liComic);
+  guardarLocal("comicsAlmacenados",JSON.stringify(comicsCarrito));
+}
+//comicBoton2
+let botonComic2 = select("#botonComic2");
+botonComic2.onclick = () => {
+  comicsCarrito.push(comic2);
+  let liComic = document.createElement("li");
+  liComic.innerHTML = `<strong>${comic2.titulo}:</strong> <strong>€${(parseInt(comic2.precio))}</strong>`;
+  resumenCompra.append(liComic);
+  guardarLocal("comicsAlmacenados",JSON.stringify(comicsCarrito));
+}
+//comicBoton3
+let botonComic3 = select("#botonComic3");
+botonComic3.onclick = () => {
+  comicsCarrito.push(comic3);
+  let liComic = document.createElement("li");
+  liComic.innerHTML = `<strong>${comic3.titulo}:</strong> <strong>€${(parseInt(comic3.precio))}</strong>`;
+  resumenCompra.append(liComic);
+  guardarLocal("comicsAlmacenados",JSON.stringify(comicsCarrito));
+}
+//comicBoton4
+let botonComic4 = select("#botonComic4");
+
+botonComic4.onclick = () => {
+  comicsCarrito.push(comic4);
+  let liComic = document.createElement("li");
+  liComic.innerHTML = `<strong>${comic4.titulo}:</strong> <strong>€${(parseInt(comic4.precio))}</strong>`;
+  resumenCompra.append(liComic);
+  guardarLocal("comicsAlmacenados",JSON.stringify(comicsCarrito));
+}
+
+
+const options = {
+  style: 'currency',
+  currency: 'EUR'
+}
+const formatPrice = price => price.toLocaleString('es-ES');
+
+function calcularPorcentaje (porcentaje) {
+  return function (precio) {
+    let calculoPorcentaje = (precio * porcentaje) / 100;
+    return precio += calculoPorcentaje;
+  }
+}
+// //Funcion Precio
+let botonResumen = select("#resumen");
+botonResumen.onclick = () =>{
+  let precioTotalCompra = comicsCarrito.reduce((acc,el) => acc + el.precio,0);
+
+  if (precioTotalCompra != 0){
+     let descuento10 = calcularPorcentaje(-10);
+    
+        let precioConDescuento = descuento10(precioTotalCompra) ;
+    
+        let iva = calcularPorcentaje(21);
+    
+        let precioFinal = iva(precioConDescuento);
+        
+        console.log("Precio total:" + espacio + precioFinal);
+        
+        select("#descuentos").innerHTML = `<p><strong>10% off: €${formatPrice(precioTotalCompra * 0.10)}</strong></p>`;
+        
+        
+        select("#impuestos").innerHTML = `<p><strong>IVA (21%): €${formatPrice(precioTotalCompra * 0.21)}</strong></p>`;
+        
+        
+        select("#totalPrecio").innerHTML = `<p><strong>€${formatPrice(precioFinal)}</strong></p>`;
    }   
 }
 
