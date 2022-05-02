@@ -140,7 +140,7 @@ for (let comic of comicsDisponibles) {
   
   card.innerHTML = `
   
-                <img src="${comic.image}" class="card-img-top" height="300px" width="auto" alt="THE BOYS ED. INTEGRAL 1">
+                <img src="${comic.image}" class="card-img-top" height="300px" width="auto" alt="${comic.titulo}">
   
                 <div class="card-body">
   
