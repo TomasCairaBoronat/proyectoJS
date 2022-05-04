@@ -53,7 +53,6 @@ if (usuarioAlmacenado != null){
     footerModal.innerHTML = `<button type="submit"  class="btn botones" id="submit" disabled>Registrado!</button>
     <button type="button" class="btn botones" data-bs-dismiss="modal">Cerrar</button>`;
   }
-  console.log(usuario);
 }
 //formulario usuario
 function validarFormulario(e){
@@ -154,7 +153,7 @@ for (let comic of comicsDisponibles) {
   
                     <div   id="boton">
   
-                      <button type="submit" id=botonComic${comic.id} class="btn botonProducto">Comprar</button>
+                      <button type="submit" id="botonComic${comic.id}" class="btn botonProducto">Comprar</button>
   
   
                     </div>
@@ -204,8 +203,6 @@ for (let comic of comicsDisponibles) {
     
         let precioFinal = iva(precioConDescuento);
         
-        console.log("Precio total:" + espacio + precioFinal);
-        
         select("#descuentos").innerHTML = `<p><strong>10% off: €${formatPrice(precioTotalCompra * 0.10)}</strong></p>`;
         
         
@@ -215,8 +212,6 @@ for (let comic of comicsDisponibles) {
         select("#totalPrecio").innerHTML = `<p><strong>€${formatPrice(precioFinal)}</strong></p>`;
    }   
   }
-console.log(comicsDisponibles);
-console.log(comicsCarrito);
 let resumenCompra = select("#resumenCompra");
 //comicBoton1
 let botonComic1 = select("#botonComic1");
