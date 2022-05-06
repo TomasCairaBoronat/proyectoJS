@@ -2,7 +2,7 @@
 //Declaracion de shortcuts
 
 
-// localStorage.clear()
+
 let espacio = " ";
 const select  = el => document.querySelector(el);
 const guardarLocal = (clave, valor) => { localStorage.setItem(clave, valor) };
@@ -166,15 +166,34 @@ for (let comic of comicsDisponibles) {
   
   
   select(".comicsHTML").appendChild(card);
-  
+  //BotonComic
+  let botonComic = select(`#botonComic${comic.id}`);
+  botonComic.onclick = () => {
+    comic.cantidad = 1;
+    comicsCarrito.push(comic)
+    let liComic = document.createElement("li");
+    liComic.innerHTML = `<strong>${comic.titulo}:</strong> <strong>€${(parseInt(comic.precio))}</strong> <strong>X ${comic.cantidad}</strong>`;
+    resumenCompra.append(liComic);
+    guardarLocal("comicsAlmacenados",JSON.stringify(comicsCarrito));
+    if (comic.cantidad >= 1){
+      botonComic.onclick = () => {
+        comic.cantidad ++;
+        liComic.innerHTML = `<strong>${comic.titulo}:</strong> <strong>€${(parseInt(comic.precio))}</strong> <strong>X ${comic.cantidad}</strong>`
+        resumenCompra.append(liComic);
+        guardarLocal("comicsAlmacenados",JSON.stringify(comicsCarrito));
+      }
+    }
+  }
   } 
+  // localStorage.clear()
   //Storage comic
   let comicsAlmacenados = JSON.parse(localStorage.getItem("comicsAlmacenados"));
   if (comicsAlmacenados != null){
+    
     for (let comicAlmacenado of comicsAlmacenados ){
       let resumenCompra = select("#resumenCompra");
       let liComic = document.createElement("li");
-      liComic.innerHTML = `<strong>${comicAlmacenado.titulo}:</strong> <strong>€${(parseInt(comicAlmacenado.precio))}</strong>`;
+      liComic.innerHTML = `<strong>${comicAlmacenado.titulo}:</strong> <strong>€${(parseInt(comicAlmacenado.precio))}</strong> <strong>X ${comicAlmacenado.cantidad}</strong>`;
       resumenCompra.append(liComic);
       comicsCarrito.push(comicAlmacenado);
     }
@@ -192,7 +211,7 @@ for (let comic of comicsDisponibles) {
         return precio += calculoPorcentaje;
       }
     }
-    let precioTotalCompra = comicsCarrito.reduce((acc,el) => acc + el.precio,0);
+    let precioTotalCompra = comicsCarrito.reduce((acc,el) => acc + (el.precio * el.cantidad),0);
 
   if (precioTotalCompra != 0){
      let descuento10 = calcularPorcentaje(-10);
@@ -213,44 +232,6 @@ for (let comic of comicsDisponibles) {
    }   
   }
 let resumenCompra = select("#resumenCompra");
-//comicBoton1
-let botonComic1 = select("#botonComic1");
-botonComic1.onclick = () => {
-  comicsCarrito.push(comic1)
-  let liComic = document.createElement("li");
-  liComic.innerHTML = `<strong>${comic1.titulo}:</strong> <strong>€${(parseInt(comic1.precio))}</strong>`;
-  resumenCompra.append(liComic);
-  guardarLocal("comicsAlmacenados",JSON.stringify(comicsCarrito));
-}
-//comicBoton2
-let botonComic2 = select("#botonComic2");
-botonComic2.onclick = () => {
-  comicsCarrito.push(comic2);
-  let liComic = document.createElement("li");
-  liComic.innerHTML = `<strong>${comic2.titulo}:</strong> <strong>€${(parseInt(comic2.precio))}</strong>`;
-  resumenCompra.append(liComic);
-  guardarLocal("comicsAlmacenados",JSON.stringify(comicsCarrito));
-}
-//comicBoton3
-let botonComic3 = select("#botonComic3");
-botonComic3.onclick = () => {
-  comicsCarrito.push(comic3);
-  let liComic = document.createElement("li");
-  liComic.innerHTML = `<strong>${comic3.titulo}:</strong> <strong>€${(parseInt(comic3.precio))}</strong>`;
-  resumenCompra.append(liComic);
-  guardarLocal("comicsAlmacenados",JSON.stringify(comicsCarrito));
-}
-//comicBoton4
-let botonComic4 = select("#botonComic4");
-
-botonComic4.onclick = () => {
-  comicsCarrito.push(comic4);
-  let liComic = document.createElement("li");
-  liComic.innerHTML = `<strong>${comic4.titulo}:</strong> <strong>€${(parseInt(comic4.precio))}</strong>`;
-  resumenCompra.append(liComic);
-  guardarLocal("comicsAlmacenados",JSON.stringify(comicsCarrito));
-}
-
 
 const options = {
   style: 'currency',
@@ -267,7 +248,7 @@ function calcularPorcentaje (porcentaje) {
 // //Funcion Precio
 let botonResumen = select("#resumen");
 botonResumen.onclick = () =>{
-  let precioTotalCompra = comicsCarrito.reduce((acc,el) => acc + el.precio,0);
+  let precioTotalCompra = comicsCarrito.reduce((acc,el) => acc + (el.precio * el.cantidad),0);
 
   if (precioTotalCompra != 0){
      let descuento10 = calcularPorcentaje(-10);
