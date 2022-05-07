@@ -169,68 +169,37 @@ for (let comic of comicsDisponibles) {
   //BotonComic
   let botonComic = select(`#botonComic${comic.id}`);
   botonComic.onclick = () => {
-    comic.cantidad = 1;
-    comicsCarrito.push(comic)
-    let liComic = document.createElement("li");
-    liComic.innerHTML = `<strong>${comic.titulo}:</strong> <strong>€${(parseInt(comic.precio))}</strong> <strong>X ${comic.cantidad}</strong>`;
-    resumenCompra.append(liComic);
-    guardarLocal("comicsAlmacenados",JSON.stringify(comicsCarrito));
-    if (comic.cantidad >= 1){
-      botonComic.onclick = () => {
-        comic.cantidad ++;
-        liComic.innerHTML = `<strong>${comic.titulo}:</strong> <strong>€${(parseInt(comic.precio))}</strong> <strong>X ${comic.cantidad}</strong>`
+
+    const comicsAlmacenados = JSON.parse(localStorage.getItem("comicsAlmacenados")) || [];
+
+    const comicEnCarrito = comicsAlmacenados.find( comicCarrito => comicCarrito.id == comic.id)
+    
+    if (comicEnCarrito) {
+      comicEnCarrito.cantidad++
+    } else {
+      comic.cantidad = 1;
+      comicsAlmacenados.push(comic)
+    }
+    
+    guardarLocal("comicsAlmacenados",JSON.stringify(comicsAlmacenados));
+  }
+}
+let carrito = select("#Carrito");
+carrito.onclick = () => {
+  const comicsAlmacenados = JSON.parse(localStorage.getItem("comicsAlmacenados")) || [];
+  for (let comicAlmacenado of comicsAlmacenados ){
+      if (comicAlmacenado != ""){
+        let resumenCompra = select("#resumenCompra");
+        let liComic = document.createElement("li");
+        liComic.innerHTML = `<strong>${comicAlmacenado.titulo}:</strong> <strong>€${(parseInt(comicAlmacenado.precio))}</strong> <strong>X ${comicAlmacenado.cantidad}</strong>`;
         resumenCompra.append(liComic);
-        guardarLocal("comicsAlmacenados",JSON.stringify(comicsCarrito));
+          comicsCarrito.push(comicAlmacenado);
+
+        }
       }
-    }
-  }
-  } 
-  // localStorage.clear()
-  //Storage comic
-  let comicsAlmacenados = JSON.parse(localStorage.getItem("comicsAlmacenados"));
-  if (comicsAlmacenados != null){
-    
-    for (let comicAlmacenado of comicsAlmacenados ){
-      let resumenCompra = select("#resumenCompra");
-      let liComic = document.createElement("li");
-      liComic.innerHTML = `<strong>${comicAlmacenado.titulo}:</strong> <strong>€${(parseInt(comicAlmacenado.precio))}</strong> <strong>X ${comicAlmacenado.cantidad}</strong>`;
-      resumenCompra.append(liComic);
-      comicsCarrito.push(comicAlmacenado);
-    }
-
-    const options = {
-      style: 'currency',
-      currency: 'EUR'
-    }
-
-    const formatPrice = price => price.toLocaleString('es-ES');
-    
-    function calcularPorcentaje (porcentaje) {
-      return function (precio) {
-        let calculoPorcentaje = (precio * porcentaje) / 100;
-        return precio += calculoPorcentaje;
-      }
-    }
-    let precioTotalCompra = comicsCarrito.reduce((acc,el) => acc + (el.precio * el.cantidad),0);
-
-  if (precioTotalCompra != 0){
-     let descuento10 = calcularPorcentaje(-10);
-    
-        let precioConDescuento = descuento10(precioTotalCompra) ;
-    
-        let iva = calcularPorcentaje(21);
-    
-        let precioFinal = iva(precioConDescuento);
-        
-        select("#descuentos").innerHTML = `<p><strong>10% off: €${formatPrice(precioTotalCompra * 0.10)}</strong></p>`;
-        
-        
-        select("#impuestos").innerHTML = `<p><strong>IVA (21%): €${formatPrice(precioTotalCompra * 0.21)}</strong></p>`;
-        
-        
-        select("#totalPrecio").innerHTML = `<p><strong>€${formatPrice(precioFinal)}</strong></p>`;
-   }   
-  }
+      
+}
+  
 let resumenCompra = select("#resumenCompra");
 
 const options = {
