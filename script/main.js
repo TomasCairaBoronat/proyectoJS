@@ -169,7 +169,7 @@ for (let comic of comicsDisponibles) {
   //BotonComic
   let botonComic = select(`#botonComic${comic.id}`);
   botonComic.onclick = () => {
-
+    
     const comicsAlmacenados = JSON.parse(localStorage.getItem("comicsAlmacenados")) || [];
 
     const comicEnCarrito = comicsAlmacenados.find( comicCarrito => comicCarrito.id == comic.id)
@@ -182,6 +182,13 @@ for (let comic of comicsDisponibles) {
     }
     
     guardarLocal("comicsAlmacenados",JSON.stringify(comicsAlmacenados));
+    botonComic.innerText = `Agregado X${comicEnCarrito.cantidad}`;
+  }
+  const comicsAlmacenados = JSON.parse(localStorage.getItem("comicsAlmacenados")) || [];
+
+    const comicEnCarrito = comicsAlmacenados.find( comicCarrito => comicCarrito.id == comic.id)
+  if (comicEnCarrito != undefined){
+    botonComic.innerText = `Agregado X${comicEnCarrito.cantidad}`;
   }
 }
 // localStorage.clear()
@@ -204,7 +211,7 @@ carrito.onclick = () => {
     liComic.innerHTML = `
     <strong>${titulo}:</strong> 
     <strong>€${precio}</strong> 
-    <strong>X ${cantidad}</strong>`;
+    <strong>X${cantidad}</strong>`;
     resumenCompra.append(liComic);
     comicsCarrito.push(comicAlmacenado);
   }  

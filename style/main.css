@@ -54,7 +54,7 @@ body {
   justify-content: center;
   margin-top: 20%; }
   .flowComic1 .precioProd1 {
-    padding-right: 30%; }
+    padding-right: 10%; }
 
 .flowComic2 {
   display: flex;
@@ -63,7 +63,7 @@ body {
   justify-content: center;
   margin-top: 20%; }
   .flowComic2 .precioProd2 {
-    padding-right: 30%; }
+    padding-right: 10%; }
 
 .flowComic3 {
   display: flex;
@@ -72,7 +72,7 @@ body {
   justify-content: center;
   margin-top: 50%; }
   .flowComic3 .precioProd3 {
-    padding-right: 30%; }
+    padding-right: 10%; }
 
 .flowComic4 {
   display: flex;
@@ -80,4 +80,4 @@ body {
   align-content: center;
   justify-content: center; }
   .flowComic4 .precioProd4 {
-    padding-right: 30%; }
+    padding-right: 10%; }
