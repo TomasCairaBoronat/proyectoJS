@@ -184,20 +184,30 @@ for (let comic of comicsDisponibles) {
     guardarLocal("comicsAlmacenados",JSON.stringify(comicsAlmacenados));
   }
 }
+// localStorage.clear()
 let carrito = select("#Carrito");
-carrito.onclick = () => {
-  const comicsAlmacenados = JSON.parse(localStorage.getItem("comicsAlmacenados")) || [];
-  for (let comicAlmacenado of comicsAlmacenados ){
-      if (comicAlmacenado != ""){
-        let resumenCompra = select("#resumenCompra");
-        let liComic = document.createElement("li");
-        liComic.innerHTML = `<strong>${comicAlmacenado.titulo}:</strong> <strong>€${(parseInt(comicAlmacenado.precio))}</strong> <strong>X ${comicAlmacenado.cantidad}</strong>`;
-        resumenCompra.append(liComic);
-          comicsCarrito.push(comicAlmacenado);
+getComicsFromCart = () => JSON.parse(localStorage.getItem("comicsAlmacenados")) || [];
 
-        }
-      }
-      
+carrito.onclick = () => {
+
+  let resumenCompra = select("#resumenCompra");
+
+  resumenCompra.innerHTML = '';
+
+  const comicsAlmacenados = getComicsFromCart();
+  
+  for (let comicAlmacenado of comicsAlmacenados ){
+
+    const { titulo, precio, cantidad } = comicAlmacenado;
+ 
+    let liComic = document.createElement("li");
+    liComic.innerHTML = `
+    <strong>${titulo}:</strong> 
+    <strong>€${precio}</strong> 
+    <strong>X ${cantidad}</strong>`;
+    resumenCompra.append(liComic);
+    comicsCarrito.push(comicAlmacenado);
+  }  
 }
   
 let resumenCompra = select("#resumenCompra");
