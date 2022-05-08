@@ -28,8 +28,8 @@ let dataUsuario = document.getElementsByClassName("dataUsuario");
 let encabezadoModal = select(".encabezadoModals");
 let footerModal = select(".footerModals");
 //Storage
-let usuarioAlmacenado = JSON.parse(localStorage.getItem("usuarioAlmacenado"));
-if (usuarioAlmacenado != null){
+let usuarioAlmacenado = JSON.parse(localStorage.getItem("usuarioAlmacenado")) || [];
+if (usuarioAlmacenado != []){
   usuario = usuarioAlmacenado;
   if (usuario != ""){
     encabezadoModal.innerHTML = `<h5 class="modal-title" id="exampleModalLabel">Perfil de ${usuario.nombre} ${usuario.apellido}</h5>
@@ -68,17 +68,20 @@ function validarFormulario(e){
   
   let usuario = { nombre: nombreUpper, apellido: apellidoUpper,edad: edadInt, mail: mailLower};
 
+  //Desestructuracion de usuario
+  const { nombre : nombreUsuario ,apellido : apellidoUsuario,edad : edadUsuario,mail : mailUsuario } = usuario
+
   //Storage
   guardarLocal("usuarioAlmacenado", JSON.stringify(usuario));
   
 
   if (usuario != ""){
-    encabezadoModal.innerHTML = `<h5 class="modal-title" id="exampleModalLabel">Perfil de ${usuario.nombre} ${usuario.apellido}</h5>
+    encabezadoModal.innerHTML = `<h5 class="modal-title" id="exampleModalLabel">Perfil de ${nombreUsuario} ${apellidoUsuario}</h5>
     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>`
-    select("#datosIngresadosUsuario").innerHTML = `<p><strong>Nombre:</strong> ${usuario.nombre}</p>
-    <p><strong>Apellido:</strong> ${usuario.apellido}</p>
-    <p><strong>Edad:</strong> ${usuario.edad}</p>
-    <p><strong>Correo Electronico:</strong> ${usuario.mail}</p>`;
+    select("#datosIngresadosUsuario").innerHTML = `<p><strong>Nombre:</strong> ${nombreUsuario}</p>
+    <p><strong>Apellido:</strong> ${apellidoUsuario}</p>
+    <p><strong>Edad:</strong> ${edadUsuario}</p>
+    <p><strong>Correo Electronico:</strong> ${mailUsuario}</p>`;
     
     form1.innerHTML = `<!-- <section class="container registroUsuario" >
     <label for="nombreUsuario" class="form-label"><strong>Nombre:</strong></label>
@@ -113,47 +116,52 @@ class Comic {
     this.image = image;
   }
 }
+//Creacion de function pushComics
+function pushComics (...comic){
+  comicsDisponibles.push(...comic)
+}
+
 //Comic1
 let comic1 = new Comic(1,"THE BOYS ED. INTEGRAL #1","Considerado uno de los cómics más irreverentes de los últimos años, este cómic se ha convertido en todo un referente para los lectores que busquen un enfoque diferente...",35,"./assets/producto1.png");
-comicsDisponibles.push(comic1);
-
 
 //Comic2
 let comic2 = new Comic(2,"Stranger Things #1: El Otro Lado","En este cómic, los seguidores de la serie descubrirán nuevos detalles de la historia, como lo que le pasó exactamente a Will Byers en el mundo del revés.",25,"./assets/producto2.png");
-comicsDisponibles.push(comic2);
-
 
 //Comic3
 let comic3 = new Comic(3,"Gunnm (Battle Angel Alita) #1","Si aún no te has acercado al manga, este cómic debe ser tu primera opción.",15,"./assets/producto3.png");
-comicsDisponibles.push(comic3);
 
 //Comic4
 let comic4 =new Comic(4,"Lo que más me gusta son los monstruos (Reservoir Gráfica)","Fue galardonada con el premio de Mejor Cómic Internacional del Salón Internacional del Cómic de Barcelona 2019, este se ha convertido en una obra de culto.",28,"./assets/producto4.png");
-comicsDisponibles.push(comic4);
-  
+
+//PushComics
+pushComics(comic1,comic2,comic3,comic4) 
+
 //Creacion cards
 for (let comic of comicsDisponibles) {
   let card = document.createElement("div");
   card.setAttribute("class","card col-md-4 col-lg-3 mx-2 my-2");
   card.setAttribute("style","width: 18rem;");
-  
+
+  //Desestructuracion de comics
+  const {id,titulo,descripcion,precio,image} = comic
+
   card.innerHTML = `
   
-                <img src="${comic.image}" class="card-img-top" height="300px" width="auto" alt="${comic.titulo}">
+                <img src="${image}" class="card-img-top" height="300px" width="auto" alt="${titulo}">
   
                 <div class="card-body">
   
-                  <p class="card-title titulosComics" id="tituloProd1"><strong>${comic.titulo}</strong></p>
+                  <p class="card-title titulosComics" id="tituloProd1"><strong>${titulo}</strong></p>
   
-                  <p class="card-text" id="descriptionProd1"><strong>${comic.descripcion}</strong></p>
+                  <p class="card-text" id="descriptionProd1"><strong>${descripcion}</strong></p>
   
-                  <div class="flowComic${comic.id}">
+                  <div class="flowComic${id}">
                   
-                      <p class="card-text precioProd${comic.id} textoPrecioProd"><strong>€<span id="precioProd1">${comic.precio}</span></strong></p>
+                      <p class="card-text precioProd${id} textoPrecioProd"><strong>€<span id="precioProd1">${precio}</span></strong></p>
   
                     <div   id="boton">
   
-                      <button type="submit" id="botonComic${comic.id}" class="btn botonProducto">Comprar</button>
+                      <button type="submit" id="botonComic${id}" class="btn botonProducto">Comprar</button>
   
   
                     </div>
@@ -172,27 +180,33 @@ for (let comic of comicsDisponibles) {
     
     const comicsAlmacenados = JSON.parse(localStorage.getItem("comicsAlmacenados")) || [];
 
-    const comicEnCarrito = comicsAlmacenados.find( comicCarrito => comicCarrito.id == comic.id)
+    const comicEnCarrito = comicsAlmacenados.find( comicCarrito => comicCarrito.id == comic.id);
     
     if (comicEnCarrito) {
-      comicEnCarrito.cantidad++
+      comicEnCarrito.cantidad++;
     } else {
       comic.cantidad = 1;
-      comicsAlmacenados.push(comic)
+      comicsAlmacenados.push(comic);
+    }
+    if (comic.cantidad == 1){
+      botonComic.innerText = `Agregado X 1`;
     }
     
     guardarLocal("comicsAlmacenados",JSON.stringify(comicsAlmacenados));
+
     botonComic.innerText = `Agregado X${comicEnCarrito.cantidad}`;
   }
   const comicsAlmacenados = JSON.parse(localStorage.getItem("comicsAlmacenados")) || [];
 
-    const comicEnCarrito = comicsAlmacenados.find( comicCarrito => comicCarrito.id == comic.id)
-  if (comicEnCarrito != undefined){
+  const comicEnCarrito = comicsAlmacenados.find( comicCarrito => comicCarrito.id == comic.id);
+
+  if (comicEnCarrito){
     botonComic.innerText = `Agregado X${comicEnCarrito.cantidad}`;
   }
 }
 // localStorage.clear()
 let carrito = select("#Carrito");
+
 getComicsFromCart = () => JSON.parse(localStorage.getItem("comicsAlmacenados")) || [];
 
 carrito.onclick = () => {
