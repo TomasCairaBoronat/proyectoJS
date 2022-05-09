@@ -190,7 +190,7 @@ for (let comic of comicsDisponibles) {
 
       Toastify({
         gravity: "top",
-        position: "right",
+        position: "center",
         text: `Agregado a carrito: ${titulo} x${comicEnCarrito.cantidad}!`,
         style: {
           background: "linear-gradient(to right, #ff0000, #d00c0c)",
@@ -205,7 +205,7 @@ for (let comic of comicsDisponibles) {
 
       Toastify({
         gravity: "top",
-        position: "right",
+        position: "center",
         text: `Agregado a carrito: ${titulo} x1!`,
         style: {
           background: "linear-gradient(to right, #ff0000, #d00c0c)",
@@ -242,7 +242,7 @@ carrito.onclick = () => {
   const comicsAlmacenados = getComicsFromCart();
   
   for (let comicAlmacenado of comicsAlmacenados ){
-    const { titulo, precio, cantidad } = comicAlmacenado;
+    const { titulo, precio, cantidad,id } = comicAlmacenado;
     
     let liComic = document.createElement("li");
     liComic.innerHTML = `
@@ -265,22 +265,33 @@ carrito.onclick = () => {
 
 //Incrementar valor
 function incrementValue(){
+    comicsAlmacenados = getComicsFromCart();
     let value = parseInt(document.getElementById('number').value, 10);
     value = isNaN(value) ? 0 : value;
     if(value<10){
-        value++;
-            document.getElementById('number').value = value;
+      value++;
+      document.getElementById('number').value = value;
     }
+    for (let comicAlmacenado of  comicsAlmacenados){
+      comicAlmacenado.cantidad = value;
+    }
+    guardarLocal("comicsAlmacenados",JSON.stringify(comicsAlmacenados))
 }
 
 //Reeducir valor
 function decrementValue(){
+  comicsAlmacenados = getComicsFromCart();
     let value = parseInt(document.getElementById('number').value, 10);
     value = isNaN(value) ? 0 : value;
     if(value>1){
         value--;
             document.getElementById('number').value = value;
     }
+    for (let comicAlmacenado of  comicsAlmacenados){
+      comicAlmacenado.cantidad = value;
+      
+    }
+    guardarLocal("comicsAlmacenados",JSON.stringify(comicsAlmacenados))
 }
 
 const options = {
