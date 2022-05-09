@@ -1,16 +1,15 @@
 
 //Declaracion de shortcuts
 
-
-
+// localStorage.clear()
 let espacio = " ";
 const select  = el => document.querySelector(el);
 const guardarLocal = (clave, valor) => { localStorage.setItem(clave, valor) };
 const guardarSession = (clave, valor) => { sessionStorage.setItem(clave, valor) };
+getComicsFromCart = () => JSON.parse(localStorage.getItem("comicsAlmacenados")) || [];
 
 // Chequeo mail
 const mailRegEx = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-
 
 let form1 = select("#form1");
 
@@ -27,7 +26,9 @@ let registroForm = select("registroUsuario");
 let dataUsuario = document.getElementsByClassName("dataUsuario");
 let encabezadoModal = select(".encabezadoModals");
 let footerModal = select(".footerModals");
+
 //Storage
+
 let usuarioAlmacenado = JSON.parse(localStorage.getItem("usuarioAlmacenado")) || [];
 if (usuarioAlmacenado != []){
   usuario = usuarioAlmacenado;
@@ -54,7 +55,9 @@ if (usuarioAlmacenado != []){
     <button type="button" class="btn botones" data-bs-dismiss="modal">Cerrar</button>`;
   }
 }
+
 //formulario usuario
+
 function validarFormulario(e){
   //Cancelamos el comportamiento del evento
   e.preventDefault();
@@ -106,6 +109,7 @@ const comicsCarrito = [];
 const botonFlexFlow = [];
 
 // Clase Comic:
+
 class Comic {
   
   constructor (id,titulo,descripcion,precio,image) {
@@ -116,23 +120,20 @@ class Comic {
     this.image = image;
   }
 }
+
 //Creacion de function pushComics
 function pushComics (...comic){
   comicsDisponibles.push(...comic)
-}
+};
 
 //Comic1
 let comic1 = new Comic(1,"THE BOYS ED. INTEGRAL #1","Considerado uno de los cómics más irreverentes de los últimos años, este cómic se ha convertido en todo un referente para los lectores que busquen un enfoque diferente...",35,"./assets/producto1.png");
-
 //Comic2
 let comic2 = new Comic(2,"Stranger Things #1: El Otro Lado","En este cómic, los seguidores de la serie descubrirán nuevos detalles de la historia, como lo que le pasó exactamente a Will Byers en el mundo del revés.",25,"./assets/producto2.png");
-
 //Comic3
 let comic3 = new Comic(3,"Gunnm (Battle Angel Alita) #1","Si aún no te has acercado al manga, este cómic debe ser tu primera opción.",15,"./assets/producto3.png");
-
 //Comic4
 let comic4 =new Comic(4,"Lo que más me gusta son los monstruos (Reservoir Gráfica)","Fue galardonada con el premio de Mejor Cómic Internacional del Salón Internacional del Cómic de Barcelona 2019, este se ha convertido en una obra de culto.",28,"./assets/producto4.png");
-
 //PushComics
 pushComics(comic1,comic2,comic3,comic4) 
 
@@ -174,6 +175,7 @@ for (let comic of comicsDisponibles) {
   
   
   select(".comicsHTML").appendChild(card);
+
   //BotonComic
   let botonComic = select(`#botonComic${comic.id}`);
   botonComic.onclick = () => {
@@ -185,6 +187,7 @@ for (let comic of comicsDisponibles) {
     
     if (comicEnCarrito) {
       comicEnCarrito.cantidad++;
+
       Toastify({
         gravity: "top",
         position: "right",
@@ -195,11 +198,12 @@ for (let comic of comicsDisponibles) {
         duration: 1500
         
         }).showToast();
+
     } else {
       comic.cantidad = 1;
       comicsAlmacenados.push(comic);
-      Toastify({
 
+      Toastify({
         gravity: "top",
         position: "right",
         text: `Agregado a carrito: ${titulo} x1!`,
@@ -207,15 +211,13 @@ for (let comic of comicsDisponibles) {
           background: "linear-gradient(to right, #ff0000, #d00c0c)",
         },
         duration: 1500
-        
         }).showToast();
     }
     if (comic.cantidad == 1){
       botonComic.innerText = `Agregado X 1`;
       
     }
-    
-    
+
     guardarLocal("comicsAlmacenados",JSON.stringify(comicsAlmacenados));
 
     botonComic.innerText = `Agregado X${comicEnCarrito.cantidad}`;
@@ -228,11 +230,8 @@ for (let comic of comicsDisponibles) {
     botonComic.innerText = `Agregado X${comicEnCarrito.cantidad}`;
   }
 }
-// localStorage.clear()
 
 let carrito = select("#Carrito");
-
-getComicsFromCart = () => JSON.parse(localStorage.getItem("comicsAlmacenados")) || [];
 
 carrito.onclick = () => {
 
@@ -264,8 +263,8 @@ carrito.onclick = () => {
   
 }
 
-function incrementValue()
-{
+//Incrementar valor
+function incrementValue(){
     let value = parseInt(document.getElementById('number').value, 10);
     value = isNaN(value) ? 0 : value;
     if(value<10){
@@ -273,19 +272,16 @@ function incrementValue()
             document.getElementById('number').value = value;
     }
 }
-function decrementValue()
-{
+
+//Reeducir valor
+function decrementValue(){
     let value = parseInt(document.getElementById('number').value, 10);
     value = isNaN(value) ? 0 : value;
     if(value>1){
         value--;
             document.getElementById('number').value = value;
     }
-
 }
-
-
- resumenCompra = select("#resumenCompra");
 
 const options = {
   style: 'currency',
@@ -312,8 +308,6 @@ botonResumen.onclick = () =>{
         let iva = calcularPorcentaje(21);
     
         let precioFinal = iva(precioConDescuento);
-        
-        console.log("Precio total:" + espacio + precioFinal);
         
         select("#descuentos").innerHTML = `<p><strong>10% off: €${formatPrice(precioTotalCompra * 0.10)}</strong></p>`;
         
