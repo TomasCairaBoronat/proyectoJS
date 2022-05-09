@@ -163,7 +163,7 @@ for (let comic of comicsDisponibles) {
   
                     <div   id="boton">
   
-                      <button type="submit" id="botonComic${id}" class="btn botonProducto">Comprar</button>
+                      <button type="submit" id="botonComic${id}" class="btn botonProducto">Add to cart</button>
   
   
                     </div>
