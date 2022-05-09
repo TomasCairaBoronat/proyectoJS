@@ -6,10 +6,11 @@ let espacio = " ";
 const select  = el => document.querySelector(el);
 const guardarLocal = (clave, valor) => { localStorage.setItem(clave, valor) };
 const guardarSession = (clave, valor) => { sessionStorage.setItem(clave, valor) };
+const obtenerLocal = (valor) => JSON.parse(localStorage.getItem(valor))
 getComicsFromCart = () => JSON.parse(localStorage.getItem("comicsAlmacenados")) || [];
+findComics = () => comicsAlmacenados.find( comicCarrito => comicCarrito.id == comic.id);
 
-// Chequeo mail
-const mailRegEx = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+//Formulario usuario
 
 let form1 = select("#form1");
 
@@ -180,10 +181,10 @@ for (let comic of comicsDisponibles) {
   let botonComic = select(`#botonComic${comic.id}`);
   botonComic.onclick = () => {
     
-    
-    const comicsAlmacenados = JSON.parse(localStorage.getItem("comicsAlmacenados")) || [];
+    const comicsAlmacenados = getComicsFromCart();
     
     const comicEnCarrito = comicsAlmacenados.find( comicCarrito => comicCarrito.id == comic.id);
+    
     
     if (comicEnCarrito) {
       comicEnCarrito.cantidad++;
@@ -202,6 +203,7 @@ for (let comic of comicsDisponibles) {
     } else {
       comic.cantidad = 1;
       comicsAlmacenados.push(comic);
+      botonComic.innerText = `Agregado X 1`;
 
       Toastify({
         gravity: "top",
@@ -213,16 +215,12 @@ for (let comic of comicsDisponibles) {
         duration: 1500
         }).showToast();
     }
-    if (comic.cantidad == 1){
-      botonComic.innerText = `Agregado X 1`;
-      
-    }
 
     guardarLocal("comicsAlmacenados",JSON.stringify(comicsAlmacenados));
 
     botonComic.innerText = `Agregado X${comicEnCarrito.cantidad}`;
   }
-  const comicsAlmacenados = JSON.parse(localStorage.getItem("comicsAlmacenados")) || [];
+  const comicsAlmacenados = getComicsFromCart();
 
   const comicEnCarrito = comicsAlmacenados.find( comicCarrito => comicCarrito.id == comic.id);
 
@@ -230,6 +228,8 @@ for (let comic of comicsDisponibles) {
     botonComic.innerText = `Agregado X${comicEnCarrito.cantidad}`;
   }
 }
+
+//Carrito
 
 let carrito = select("#Carrito");
 
@@ -265,13 +265,14 @@ carrito.onclick = () => {
 
 //Incrementar valor
 function incrementValue(){
-    comicsAlmacenados = getComicsFromCart();
-    let value = parseInt(document.getElementById('number').value, 10);
+    comicsAlmacenados = getComicsFromCart() || [];
+    let value = parseInt(document.getElementById(`number`).value, 10);
     value = isNaN(value) ? 0 : value;
     if(value<10){
       value++;
-      document.getElementById('number').value = value;
+      document.getElementById(`number`).value = value;
     }
+    
     for (let comicAlmacenado of  comicsAlmacenados){
       comicAlmacenado.cantidad = value;
     }
@@ -281,11 +282,11 @@ function incrementValue(){
 //Reeducir valor
 function decrementValue(){
   comicsAlmacenados = getComicsFromCart();
-    let value = parseInt(document.getElementById('number').value, 10);
+    let value = parseInt(document.getElementById(`number`).value, 10);
     value = isNaN(value) ? 0 : value;
     if(value>1){
         value--;
-            document.getElementById('number').value = value;
+            document.getElementById(`number`).value = value;
     }
     for (let comicAlmacenado of  comicsAlmacenados){
       comicAlmacenado.cantidad = value;
