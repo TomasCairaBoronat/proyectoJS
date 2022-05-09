@@ -217,14 +217,14 @@ for (let comic of comicsDisponibles) {
     }
 
     guardarLocal("comicsAlmacenados",JSON.stringify(comicsAlmacenados));
-
+    
     botonComic.innerText = `Agregado X${comicEnCarrito.cantidad}`;
   }
   const comicsAlmacenados = getComicsFromCart();
 
   const comicEnCarrito = comicsAlmacenados.find( comicCarrito => comicCarrito.id == comic.id);
 
-  if (comicEnCarrito){
+  if (comicEnCarrito.cantidad != 0){
     botonComic.innerText = `Agregado X${comicEnCarrito.cantidad}`;
   }
 }
@@ -250,9 +250,9 @@ carrito.onclick = () => {
     <strong>€${precio}</strong> 
     <strong> 
     <div class="container">
-    <input type="button" onclick="decrementValue()" value="-" />
-    <input type="text" name="quantity" value="${cantidad}" maxlength="2" max="10" size="1" id="number" />
-    <input type="button" onclick="incrementValue()" value="+" />
+    <input type="button" onclick="decrementValue${id}()" value="-" />
+    <input type="text" name="quantity" value="${cantidad}" maxlength="2" max="10" size="1" id="number${id}" />
+    <input type="button" onclick="incrementValue${id}()" value="+" />
     </div>  </strong>`;
     
     resumenCompra.append(liComic);
@@ -263,38 +263,147 @@ carrito.onclick = () => {
   
 }
 
-//Incrementar valor
-function incrementValue(){
-    comicsAlmacenados = getComicsFromCart() || [];
-    let value = parseInt(document.getElementById(`number`).value, 10);
+//value1
+function incrementValue1(){
+    comicsAlmacenados = getComicsFromCart();
+    let value = parseInt(document.getElementById(`number1`).value, 10);
     value = isNaN(value) ? 0 : value;
     if(value<10){
       value++;
-      document.getElementById(`number`).value = value;
+      document.getElementById(`number1`).value = value;
     }
     
-    for (let comicAlmacenado of  comicsAlmacenados){
-      comicAlmacenado.cantidad = value;
+    for(let comicAlmacenado of comicsAlmacenados){
+      if (comicAlmacenado.id == 1){
+        comicAlmacenado.cantidad = value
+      }
     }
     guardarLocal("comicsAlmacenados",JSON.stringify(comicsAlmacenados))
 }
 
-//Reeducir valor
-function decrementValue(){
+function decrementValue1(){
   comicsAlmacenados = getComicsFromCart();
-    let value = parseInt(document.getElementById(`number`).value, 10);
+    let value = parseInt(document.getElementById(`number1`).value, 10);
     value = isNaN(value) ? 0 : value;
-    if(value>1){
+    if(value>0){
         value--;
-            document.getElementById(`number`).value = value;
+            document.getElementById(`number1`).value = value;
     }
     for (let comicAlmacenado of  comicsAlmacenados){
-      comicAlmacenado.cantidad = value;
+      if(comicAlmacenado.id == 1){
+        comicAlmacenado.cantidad = value;
+      }
       
     }
     guardarLocal("comicsAlmacenados",JSON.stringify(comicsAlmacenados))
 }
 
+//value2
+function incrementValue2(){
+  comicsAlmacenados = getComicsFromCart();
+  let value = parseInt(document.getElementById(`number2`).value, 10);
+  value = isNaN(value) ? 0 : value;
+  if(value<10){
+    value++;
+    document.getElementById(`number2`).value = value;
+  }
+  
+  for(let comicAlmacenado of comicsAlmacenados){
+    if (comicAlmacenado.id == 2){
+      comicAlmacenado.cantidad = value
+    }
+  }
+  guardarLocal("comicsAlmacenados",JSON.stringify(comicsAlmacenados))
+}
+
+function decrementValue2(){
+  comicsAlmacenados = getComicsFromCart();
+    let value = parseInt(document.getElementById(`number2`).value, 10);
+    value = isNaN(value) ? 0 : value;
+    if(value>0){
+        value--;
+            document.getElementById(`number2`).value = value;
+    }
+    for (let comicAlmacenado of  comicsAlmacenados){
+      if(comicAlmacenado.id == 2){
+        comicAlmacenado.cantidad = value;
+      }
+      
+    }
+    guardarLocal("comicsAlmacenados",JSON.stringify(comicsAlmacenados))
+}
+
+//value3
+function incrementValue3(){
+  comicsAlmacenados = getComicsFromCart();
+  let value = parseInt(document.getElementById(`number3`).value, 10);
+  value = isNaN(value) ? 0 : value;
+  if(value<10){
+    value++;
+    document.getElementById(`number3`).value = value;
+  }
+  
+  for(let comicAlmacenado of comicsAlmacenados){
+    if (comicAlmacenado.id == 3){
+      comicAlmacenado.cantidad = value
+    }
+  }
+  guardarLocal("comicsAlmacenados",JSON.stringify(comicsAlmacenados))
+}
+
+function decrementValue3(){
+  comicsAlmacenados = getComicsFromCart();
+    let value = parseInt(document.getElementById(`number3`).value, 10);
+    value = isNaN(value) ? 0 : value;
+    if(value>0){
+        value--;
+            document.getElementById(`number3`).value = value;
+    }
+    for (let comicAlmacenado of  comicsAlmacenados){
+      if(comicAlmacenado.id == 3){
+        comicAlmacenado.cantidad = value;
+      }
+      
+    }
+    guardarLocal("comicsAlmacenados",JSON.stringify(comicsAlmacenados))
+}
+
+//value4
+function incrementValue4(){
+  comicsAlmacenados = getComicsFromCart();
+  let value = parseInt(document.getElementById(`number4`).value, 10);
+  value = isNaN(value) ? 0 : value;
+  if(value<10){
+    value++;
+    document.getElementById(`number4`).value = value;
+  }
+  
+  for(let comicAlmacenado of comicsAlmacenados){
+    if (comicAlmacenado.id == 4){
+      comicAlmacenado.cantidad = value
+    }
+  }
+  guardarLocal("comicsAlmacenados",JSON.stringify(comicsAlmacenados))
+}
+
+function decrementValue4(){
+  comicsAlmacenados = getComicsFromCart();
+    let value = parseInt(document.getElementById(`number4`).value, 10);
+    value = isNaN(value) ? 0 : value;
+    if(value>0){
+        value--;
+            document.getElementById(`number4`).value = value;
+    }
+    for (let comicAlmacenado of  comicsAlmacenados){
+      if(comicAlmacenado.id == 4){
+        comicAlmacenado.cantidad = value;
+      }
+      
+    }
+    guardarLocal("comicsAlmacenados",JSON.stringify(comicsAlmacenados))
+}
+
+//resumen
 const options = {
   style: 'currency',
   currency: 'EUR'
@@ -310,7 +419,8 @@ function calcularPorcentaje (porcentaje) {
 // //Funcion Precio
 let botonResumen = select("#resumen");
 botonResumen.onclick = () =>{
-  let precioTotalCompra = comicsCarrito.reduce((acc,el) => acc + (el.precio * el.cantidad),0);
+  comicsAlmacenados = getComicsFromCart();
+  let precioTotalCompra = comicsAlmacenados.reduce((acc,el) => acc + (el.precio * el.cantidad),0);
 
   if (precioTotalCompra != 0){
      let descuento10 = calcularPorcentaje(-10);
@@ -328,6 +438,14 @@ botonResumen.onclick = () =>{
         
         
         select("#totalPrecio").innerHTML = `<p><strong>€${formatPrice(precioFinal)}</strong></p>`;
+   }else{
+    select("#descuentos").innerHTML = `<p><strong>10% off: €0</strong></p>`;
+        
+        
+    select("#impuestos").innerHTML = `<p><strong>IVA (21%): €0</strong></p>`;
+    
+    
+    select("#totalPrecio").innerHTML = `<p><strong>€0</strong></p>`;
    }   
 }
 
