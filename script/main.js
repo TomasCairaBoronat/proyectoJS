@@ -178,19 +178,43 @@ for (let comic of comicsDisponibles) {
   let botonComic = select(`#botonComic${comic.id}`);
   botonComic.onclick = () => {
     
+    
     const comicsAlmacenados = JSON.parse(localStorage.getItem("comicsAlmacenados")) || [];
-
+    
     const comicEnCarrito = comicsAlmacenados.find( comicCarrito => comicCarrito.id == comic.id);
     
     if (comicEnCarrito) {
       comicEnCarrito.cantidad++;
+      Toastify({
+        gravity: "top",
+        position: "right",
+        text: `Agregado a carrito: ${titulo} x${comicEnCarrito.cantidad}!`,
+        style: {
+          background: "linear-gradient(to right, #ff0000, #d00c0c)",
+        },
+        duration: 1500
+        
+        }).showToast();
     } else {
       comic.cantidad = 1;
       comicsAlmacenados.push(comic);
+      Toastify({
+
+        gravity: "top",
+        position: "right",
+        text: `Agregado a carrito: ${titulo} x1!`,
+        style: {
+          background: "linear-gradient(to right, #ff0000, #d00c0c)",
+        },
+        duration: 1500
+        
+        }).showToast();
     }
     if (comic.cantidad == 1){
       botonComic.innerText = `Agregado X 1`;
+      
     }
+    
     
     guardarLocal("comicsAlmacenados",JSON.stringify(comicsAlmacenados));
 
@@ -205,6 +229,7 @@ for (let comic of comicsDisponibles) {
   }
 }
 // localStorage.clear()
+
 let carrito = select("#Carrito");
 
 getComicsFromCart = () => JSON.parse(localStorage.getItem("comicsAlmacenados")) || [];
@@ -218,20 +243,49 @@ carrito.onclick = () => {
   const comicsAlmacenados = getComicsFromCart();
   
   for (let comicAlmacenado of comicsAlmacenados ){
-
     const { titulo, precio, cantidad } = comicAlmacenado;
- 
+    
     let liComic = document.createElement("li");
     liComic.innerHTML = `
     <strong>${titulo}:</strong> 
     <strong>€${precio}</strong> 
-    <strong>X${cantidad}</strong>`;
+    <strong> 
+    <div class="container">
+    <input type="button" onclick="decrementValue()" value="-" />
+    <input type="text" name="quantity" value="${cantidad}" maxlength="2" max="10" size="1" id="number" />
+    <input type="button" onclick="incrementValue()" value="+" />
+    </div>  </strong>`;
+    
     resumenCompra.append(liComic);
+    
     comicsCarrito.push(comicAlmacenado);
+    
   }  
-}
   
-let resumenCompra = select("#resumenCompra");
+}
+
+function incrementValue()
+{
+    let value = parseInt(document.getElementById('number').value, 10);
+    value = isNaN(value) ? 0 : value;
+    if(value<10){
+        value++;
+            document.getElementById('number').value = value;
+    }
+}
+function decrementValue()
+{
+    let value = parseInt(document.getElementById('number').value, 10);
+    value = isNaN(value) ? 0 : value;
+    if(value>1){
+        value--;
+            document.getElementById('number').value = value;
+    }
+
+}
+
+
+ resumenCompra = select("#resumenCompra");
 
 const options = {
   style: 'currency',
