@@ -187,23 +187,35 @@ for (let comic of comicsDisponibles) {
     
     
     if (comicEnCarrito) {
-      comicEnCarrito.cantidad++;
+      if(comicEnCarrito.cantidad < 10){
+        comicEnCarrito.cantidad++;
+        Toastify({
+          gravity: "top",
+          position: "center",
+          text: `Agregado a carrito: ${titulo} x${comicEnCarrito.cantidad}!`,
+          style: {
+            background: "linear-gradient(to right, #ff0000, #d00c0c)",
+          },
+          duration: 1500
+          
+          }).showToast();  
+      }else{
+        Toastify({
+          gravity: "top",
+          position: "center",
+          text: `Ha llegado al limite maximo de 10 unidades`,
+          style: {
+            background: "linear-gradient(to right, #ff0000, #d00c0c)",
+          },
+          duration: 1500
+          
+          }).showToast();
+      }
 
-      Toastify({
-        gravity: "top",
-        position: "center",
-        text: `Agregado a carrito: ${titulo} x${comicEnCarrito.cantidad}!`,
-        style: {
-          background: "linear-gradient(to right, #ff0000, #d00c0c)",
-        },
-        duration: 1500
-        
-        }).showToast();
-
+      
     } else {
       comic.cantidad = 1;
       comicsAlmacenados.push(comic);
-      botonComic.innerText = `Agregado X 1`;
 
       Toastify({
         gravity: "top",
@@ -217,16 +229,9 @@ for (let comic of comicsDisponibles) {
     }
 
     guardarLocal("comicsAlmacenados",JSON.stringify(comicsAlmacenados));
-    
-    botonComic.innerText = `Agregado X${comicEnCarrito.cantidad}`;
   }
-  const comicsAlmacenados = getComicsFromCart();
 
-  const comicEnCarrito = comicsAlmacenados.find( comicCarrito => comicCarrito.id == comic.id);
-
-  if (comicEnCarrito.cantidad != 0){
-    botonComic.innerText = `Agregado X${comicEnCarrito.cantidad}`;
-  }
+  
 }
 
 //Carrito
