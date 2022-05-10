@@ -226,6 +226,7 @@ for (let comic of comicsDisponibles) {
         position: "center",
         text: `Agregado a carrito: ${titulo} x1!`,
         style: {
+          color: 'black',
           background: "linear-gradient(to right, #ff0000, #d00c0c)",
         },
         duration: 1500
