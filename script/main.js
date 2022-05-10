@@ -7,8 +7,8 @@ const select  = el => document.querySelector(el);
 const guardarLocal = (clave, valor) => { localStorage.setItem(clave, valor) };
 const guardarSession = (clave, valor) => { sessionStorage.setItem(clave, valor) };
 const obtenerLocal = (valor) => JSON.parse(localStorage.getItem(valor))
-getComicsFromCart = () => JSON.parse(localStorage.getItem("comicsAlmacenados")) || [];
-findComics = () => comicsAlmacenados.find( comicCarrito => comicCarrito.id == comic.id);
+const getComicsFromCart = () => JSON.parse(localStorage.getItem("comicsAlmacenados")) || [];
+ const findComics = () => comicsAlmacenados.find( comicCarrito => comicCarrito.id == comic.id);
 
 //Formulario usuario
 
@@ -128,7 +128,7 @@ function pushComics (...comic){
 };
 
 //Comic1
-let comic1 = new Comic(1,"THE BOYS ED. INTEGRAL #1","Considerado uno de los cómics más irreverentes de los últimos años, este cómic se ha convertido en todo un referente para los lectores que busquen un enfoque diferente...",35,"./assets/producto1.png");
+let comic1 = new Comic(1,"THE BOYS ED. INTEGRAL #1","Considerado uno de los cómics más irreverentes de los últimos años, este cómic se ha convertido en todo un referente para los lectores que busquen un enfoque diferente",35,"./assets/producto1.png");
 //Comic2
 let comic2 = new Comic(2,"Stranger Things #1: El Otro Lado","En este cómic, los seguidores de la serie descubrirán nuevos detalles de la historia, como lo que le pasó exactamente a Will Byers en el mundo del revés.",25,"./assets/producto2.png");
 //Comic3
