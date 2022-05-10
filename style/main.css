@@ -82,6 +82,60 @@ body {
   .flowComic4 .precioProd4 {
     padding-right: 10%; }
 
+.section4 {
+  margin-top: 2%;
+  margin-bottom: 2%; }
+
+.contactoUl {
+  list-style-type: none;
+  display: flex;
+  flex-flow: column wrap; }
+  .contactoUl .logoWpp {
+    margin-top: 1%; }
+    .contactoUl .logoWpp .bi-whatsapp {
+      margin-right: 1%; }
+  .contactoUl .logoMail .bi-envelope {
+    margin-right: 1%; }
+
+.contactoUl :hover {
+  color: gray; }
+
+.contactoUl :active {
+  color: #d8d8d8; }
+
+/*Footer*/
+.footerGrid {
+  background-color: red;
+  display: grid;
+  grid-template-areas: "logoFooter derechosFooter contactosFooter ";
+  color: black; }
+  .footerGrid .tC {
+    color: black; }
+
+.footerGrid .logoFooter {
+  grid-area: logoFooter; }
+
+.footerGrid .derechosFooter {
+  grid-area: derechosFooter; }
+
+.footerGrid .contactosFooter {
+  grid-area: contactosFooter; }
+
+.footerGrid .nombreFooter:hover {
+  color: gray; }
+
+.footerGrid .nombreFooter2:hover {
+  color: gray; }
+
+#botonInicio {
+  position: fixed;
+  bottom: 8%;
+  right: 10px;
+  z-index: 99;
+  cursor: pointer;
+  width: 50px;
+  height: auto; }
+
 @media only screen and (min-width: 320px) and (max-width: 767px) {
   .foto1 {
     width: 400px;

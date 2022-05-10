@@ -176,6 +176,8 @@ for (let comic of comicsDisponibles) {
   
   
   select(".comicsHTML").appendChild(card);
+  
+  
 
   //BotonComic
   let botonComic = select(`#botonComic${comic.id}`);
@@ -194,6 +196,7 @@ for (let comic of comicsDisponibles) {
           position: "center",
           text: `Agregado a carrito: ${titulo} x${comicEnCarrito.cantidad}!`,
           style: {
+            color: 'black',
             background: "linear-gradient(to right, #ff0000, #d00c0c)",
           },
           duration: 1500
@@ -205,6 +208,7 @@ for (let comic of comicsDisponibles) {
           position: "center",
           text: `Ha llegado al limite maximo de 10 unidades`,
           style: {
+            color: 'black',
             background: "linear-gradient(to right, #ff0000, #d00c0c)",
           },
           duration: 1500
