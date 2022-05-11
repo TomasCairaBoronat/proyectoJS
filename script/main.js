@@ -199,7 +199,7 @@ for (let comic of comicsDisponibles) {
             color: 'black',
             background: "linear-gradient(to right, #ff3e3e, #fe3d3d)",
           },
-          duration: 1500
+          duration: 3000
           
           }).showToast();  
       }else{
@@ -211,7 +211,7 @@ for (let comic of comicsDisponibles) {
             color: 'black',
             background: "linear-gradient(to right, #ff3e3e, #fe3d3d)",
           },
-          duration: 1500
+          duration: 3000
           
           }).showToast();
       }
@@ -229,7 +229,7 @@ for (let comic of comicsDisponibles) {
           color: 'black',
           background: "linear-gradient(to right, #ff3e3e, #fe3d3d)",
         },
-        duration: 1500
+        duration: 3000
         }).showToast();
     }
 
