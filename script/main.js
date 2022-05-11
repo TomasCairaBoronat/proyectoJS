@@ -197,7 +197,7 @@ for (let comic of comicsDisponibles) {
           text: `Agregado a carrito: ${titulo} x${comicEnCarrito.cantidad}!`,
           style: {
             color: 'black',
-            background: "linear-gradient(to right, #ff0000, #d00c0c)",
+            background: "linear-gradient(to right, #ff3e3e, #fe3d3d)",
           },
           duration: 1500
           
@@ -209,7 +209,7 @@ for (let comic of comicsDisponibles) {
           text: `Ha llegado al limite maximo de 10 unidades`,
           style: {
             color: 'black',
-            background: "linear-gradient(to right, #ff0000, #d00c0c)",
+            background: "linear-gradient(to right, #ff3e3e, #fe3d3d)",
           },
           duration: 1500
           
@@ -227,7 +227,7 @@ for (let comic of comicsDisponibles) {
         text: `Agregado a carrito: ${titulo} x1!`,
         style: {
           color: 'black',
-          background: "linear-gradient(to right, #ff0000, #d00c0c)",
+          background: "linear-gradient(to right, #ff3e3e, #fe3d3d)",
         },
         duration: 1500
         }).showToast();
