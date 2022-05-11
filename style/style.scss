@@ -4,7 +4,7 @@ body{
     margin: 0;
 }
 .navbar{
-    background-color: rgb(221, 0, 0);
+    background-color: rgb(255, 62, 62);
     .iconos{
         display: flex;
         align-self: flex-end;
@@ -29,10 +29,10 @@ body{
     background-color: rgb(194, 193, 193);
 }
 .encabezadoModals{
-    background-color: red;
+    background-color: rgb(255, 62, 62);
 }
 .footerModals{
-    background-color: red;
+    background-color: rgb(255, 62, 62);
 }
 //comics inicio
 .comicsHTML{
@@ -48,7 +48,7 @@ body{
     padding-left: 15%;
 }
 .botonProducto{
-    background-color: rgb(255, 3, 3);
+    background-color: rgb(255, 62, 62);
 }
 .flowComic1{
     display: flex;
@@ -112,7 +112,7 @@ body{
 
 /*Footer*/
 .footerGrid {
-    background-color: red;
+    background-color: rgb(255, 62, 62);
     display: grid;
     grid-template-areas: "logoFooter derechosFooter contactosFooter ";
     color: black; 
