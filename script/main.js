@@ -186,11 +186,15 @@ for (let comic of comicsDisponibles) {
     const comicsAlmacenados = getComicsFromCart();
     
     const comicEnCarrito = comicsAlmacenados.find( comicCarrito => comicCarrito.id == comic.id);
-    
-    
+
     if (comicEnCarrito) {
       if(comicEnCarrito.cantidad < 10){
         comicEnCarrito.cantidad++;
+        botonComic.innerHTML = `Added X${comicEnCarrito.cantidad}`
+    
+        setTimeout(() => {
+          botonComic.innerHTML = `Add to cart`
+        },1000)
         Toastify({
           gravity: "top",
           position: "center",
@@ -203,6 +207,12 @@ for (let comic of comicsDisponibles) {
           
           }).showToast();  
       }else{
+        botonComic.innerHTML = `Maxed out`
+    
+        setTimeout(() => {
+          botonComic.innerHTML = `Add to cart`
+        },1000)
+
         Toastify({
           gravity: "top",
           position: "center",
@@ -220,6 +230,12 @@ for (let comic of comicsDisponibles) {
     } else {
       comic.cantidad = 1;
       comicsAlmacenados.push(comic);
+
+      botonComic.innerHTML = `Added X 1`
+    
+      setTimeout(() => {
+        botonComic.innerHTML = `Add to cart`
+      },1000)
 
       Toastify({
         gravity: "top",
