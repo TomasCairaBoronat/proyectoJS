@@ -482,7 +482,7 @@ window.onload = function() {
   document.getElementById('contact-form').addEventListener('submit', function(event) {
       event.preventDefault();
       this.contact_number.value = Math.random() * 100000 | 0;
-      emailjs.sendForm('service_Tony2014', 'contact_form', this)
+      emailjs.sendForm('service_Tony', 'contact_form', this)
       .then(function() {
         console.log('SUCCESS!');
         Swal.fire({
