@@ -483,21 +483,20 @@ window.onload = function() {
       event.preventDefault();
       this.contact_number.value = Math.random() * 100000 | 0;
       emailjs.sendForm('service_Tony', 'contact_form', this)
-      .then(function() {
-        console.log('SUCCESS!');
+      .then( () => {
         Swal.fire({
           icon: 'success',
           title: 'Formulario enviado correctamente!',
           confirmButtonColor: "#ff3e3e",
           })
-      }, function(error) {
-        console.log('FAILED...', error);
-        Swal.fire({
-          icon: 'error',
-          title: 'Hubo un error con el servidor, intenta nuevamente mas tarde',
-          confirmButtonColor: "#ff3e3e",
-          })
-      });
+      }).catch( ()=>{
+          Swal.fire({
+            icon: 'error',
+            title: 'Hubo un error con el servidor, intenta nuevamente mas tarde',
+            confirmButtonColor: "#ff3e3e",
+            })
+        }
+       );
     });
   }
   
