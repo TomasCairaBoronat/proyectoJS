@@ -20,8 +20,6 @@ let submitBoton = select("#submit");
 
 let registroForm = select("registroUsuario");
 
-
-
 //data usuario
 
 let dataUsuario = document.getElementsByClassName("dataUsuario");
@@ -475,6 +473,33 @@ botonResumen.onclick = () =>{
    }   
 }
 
+//Formulario Contacto
 
+(function() {
+  emailjs.init('taN9cOyfefYfoC2Xw');
+})();
+window.onload = function() {
+  document.getElementById('contact-form').addEventListener('submit', function(event) {
+      event.preventDefault();
+      this.contact_number.value = Math.random() * 100000 | 0;
+      emailjs.sendForm('service_Tony2014', 'contact_form', this)
+      .then(function() {
+        console.log('SUCCESS!');
+        Swal.fire({
+          icon: 'success',
+          title: 'Formulario enviado correctamente!',
+          confirmButtonColor: "#ff3e3e",
+          })
+      }, function(error) {
+        console.log('FAILED...', error);
+        Swal.fire({
+          icon: 'error',
+          title: 'Hubo un error con el servidor, intenta nuevamente mas tarde',
+          confirmButtonColor: "#ff3e3e",
+          })
+      });
+    });
+  }
+  
 
 
