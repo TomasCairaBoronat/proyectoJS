@@ -287,6 +287,7 @@ carrito.onclick = () => {
   }  
   
 }
+
 //value1
 function incrementValue1(){
     comicsAlmacenados = getComicsFromCart();
@@ -321,7 +322,6 @@ function decrementValue1(){
     }
     guardarLocal("comicsAlmacenados",JSON.stringify(comicsAlmacenados))
 }
-
 
 //value2
 function incrementValue2(){
