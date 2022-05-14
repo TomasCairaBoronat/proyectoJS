@@ -103,11 +103,6 @@ body {
 .contactoUl :active {
   color: #d8d8d8; }
 
-.captcha {
-  margin-top: 2%;
-  margin-bottom: 2%;
-  margin-left: 6%; }
-
 /*Footer*/
 .footerGrid {
   background-color: #ff3e3e;
