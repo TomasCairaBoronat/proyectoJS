@@ -8,7 +8,7 @@ const guardarLocal = (clave, valor) => { localStorage.setItem(clave, valor) };
 const guardarSession = (clave, valor) => { sessionStorage.setItem(clave, valor) };
 const obtenerLocal = (valor) => JSON.parse(localStorage.getItem(valor))
 const getComicsFromCart = () => JSON.parse(localStorage.getItem("comicsAlmacenados")) || [];
- const findComics = () => comicsAlmacenados.find( comicCarrito => comicCarrito.id == comic.id);
+const findComics = () => comicsAlmacenados.find( comicCarrito => comicCarrito.id == comic.id);
 
 //Formulario usuario
 
@@ -31,13 +31,14 @@ let footerModal = select(".footerModals");
 let usuarioAlmacenado = JSON.parse(localStorage.getItem("usuarioAlmacenado")) || [];
 if (usuarioAlmacenado != []){
   usuario = usuarioAlmacenado;
+  const { nombre : nombreUsuario ,apellido : apellidoUsuario,edad : edadUsuario,mail : mailUsuario } = usuario
   if (usuario != ""){
-    encabezadoModal.innerHTML = `<h5 class="modal-title" id="exampleModalLabel">Perfil de ${usuario.nombre} ${usuario.apellido}</h5>
+    encabezadoModal.innerHTML = `<h5 class="modal-title" id="exampleModalLabel">Perfil de ${nombreUsuario} ${apellidoUsuario}</h5>
     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>`
-    select("#datosIngresadosUsuario").innerHTML = `<p><strong>Nombre:</strong> ${usuario.nombre}</p>
-    <p><strong>Apellido:</strong> ${usuario.apellido}</p>
-    <p><strong>Edad:</strong> ${usuario.edad}</p>
-    <p><strong>Correo Electronico:</strong> ${usuario.mail}</p>`;
+    select("#datosIngresadosUsuario").innerHTML = `<p><strong>Nombre:</strong> ${nombreUsuario}</p>
+    <p><strong>Apellido:</strong> ${apellidoUsuario}</p>
+    <p><strong>Edad:</strong> ${edadUsuario}</p>
+    <p><strong>Correo Electronico:</strong> ${mailUsuario}</p>`;
     
     form1.innerHTML = `<!-- <section class="container registroUsuario" >
     <label for="nombreUsuario" class="form-label"><strong>Nombre:</strong></label>
@@ -286,7 +287,6 @@ carrito.onclick = () => {
   }  
   
 }
-
 //value1
 function incrementValue1(){
     comicsAlmacenados = getComicsFromCart();
@@ -321,6 +321,7 @@ function decrementValue1(){
     }
     guardarLocal("comicsAlmacenados",JSON.stringify(comicsAlmacenados))
 }
+
 
 //value2
 function incrementValue2(){
