@@ -103,6 +103,11 @@ body {
 .contactoUl :active {
   color: #d8d8d8; }
 
+.captcha {
+  margin-top: 2%;
+  margin-bottom: 2%;
+  margin-left: 6%; }
+
 /*Footer*/
 .footerGrid {
   background-color: #ff3e3e;
@@ -141,9 +146,17 @@ body {
     display: flex;
     flex-flow: row wrap; }
   .h1 {
-    font-size: x-large; } }
+    font-size: x-large; }
+  .captcha {
+    margin-top: 2%;
+    margin-bottom: 2%;
+    margin-left: 0%; } }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   .iconosDerecha {
     display: flex;
-    flex-flow: row wrap; } }
+    flex-flow: row wrap; }
+  .captcha {
+    margin-top: 2%;
+    margin-bottom: 2%;
+    margin-left: 0%; } }

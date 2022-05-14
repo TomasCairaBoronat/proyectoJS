@@ -110,7 +110,11 @@ body{
       .contactoUl :active {
         color: #d8d8d8; }
 
-
+.captcha{
+    margin-top: 2%;
+    margin-bottom: 2%;
+    margin-left: 6%;
+}
 /*Footer*/
 .footerGrid {
     background-color: rgb(255, 62, 62);
@@ -149,10 +153,20 @@ body{
         font-size:x-large;
         
     }
+    .captcha{
+        margin-top: 2%;
+        margin-bottom: 2%;
+        margin-left: 0%;
+    }
 }
 @media only screen and (min-width: 768px) and (max-width: 991px) {
     .iconosDerecha{
         display: flex;
         flex-flow: row wrap;
+    }
+    .captcha{
+        margin-top: 2%;
+        margin-bottom: 2%;
+        margin-left: 0%;
     }
 }
