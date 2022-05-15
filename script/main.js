@@ -233,9 +233,8 @@ carrito.onclick = () => {
     let liComic = document.createElement("li");
      liComic.innerHTML = `
     
-    <strong>${titulo}:</strong> 
-    <strong>${precio}€</strong> 
-
+    <p class="mb-0"><strong>${titulo}: ${precio}€</strong></p> 
+    
     <div class="container">
       <input type="button" onclick="decrement(${id})" value="-" />
       <span id="cantidad${id}">${cantidad}</span>
