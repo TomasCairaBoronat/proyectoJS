@@ -1,0 +1,34 @@
+[
+    {
+        "id": 1,
+        "titulo": "THE BOYS ED. INTEGRAL #1",
+        "descripcion": "Considerado uno de los cómics más irreverentes de los últimos años, este cómic se ha convertido en todo un referente para los lectores que busquen un enfoque diferente",
+        "precio": 35,
+        "image": "./assets/producto1.png",
+        "cantidad": 4
+    },
+    {
+        "id": 2,
+        "titulo": "Stranger Things #1: El Otro Lado",
+        "descripcion": "En este cómic, los seguidores de la serie descubrirán nuevos detalles de la historia, como lo que le pasó exactamente a Will Byers en el mundo del revés.",
+        "precio": 25,
+        "image": "./assets/producto2.png",
+        "cantidad": 1
+    },
+    {
+        "id": 3,
+        "titulo": "Gunnm (Battle Angel Alita) #1",
+        "descripcion": "Si aún no te has acercado al manga, este cómic debe ser tu primera opción.",
+        "precio": 15,
+        "image": "./assets/producto3.png",
+        "cantidad": 1
+    },
+    {
+        "id": 4,
+        "titulo": "Lo que más me gusta son los monstruos (Reservoir Gráfica)",
+        "descripcion": "Fue galardonada con el premio de Mejor Cómic Internacional del Salón Internacional del Cómic de Barcelona 2019, este se ha convertido en una obra de culto.",
+        "precio": 28,
+        "image": "./assets/producto4.png",
+        "cantidad": 1
+    }
+]
