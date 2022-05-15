@@ -158,7 +158,7 @@ for (let comic of comicsDisponibles) {
   
                   <div class="flowComic${id}">
                   
-                      <p class="card-text precioProd${id} textoPrecioProd"><strong>€<span id="precioProd1">${precio}</span></strong></p>
+                      <p class="card-text precioProd${id} textoPrecioProd"><strong><span id="precioProd1">${precio}</span>€</strong></p>
   
                     <div   id="boton">
   
@@ -272,7 +272,7 @@ carrito.onclick = () => {
     let liComic = document.createElement("li");
     liComic.innerHTML = `
     <strong>${titulo}:</strong> 
-    <strong>€${precio}</strong> 
+    <strong>${precio}€</strong> 
     <strong> 
     <div class="container">
     <input type="button" onclick="decrementValue${id}()" value="-" />
