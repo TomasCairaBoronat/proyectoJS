@@ -456,21 +456,21 @@ botonResumen.onclick = () =>{
     
         let precioFinal = iva(precioConDescuento);
         
-        select("#descuentos").innerHTML = `<p><strong>10% off: €${formatPrice(precioTotalCompra * 0.10)}</strong></p>`;
+        select("#descuentos").innerHTML = `<p><strong>10% off: ${formatPrice(precioTotalCompra * 0.10)}€</strong></p>`;
         
         
-        select("#impuestos").innerHTML = `<p><strong>IVA (21%): €${formatPrice(precioTotalCompra * 0.21)}</strong></p>`;
+        select("#impuestos").innerHTML = `<p><strong>IVA (21%): ${formatPrice(precioTotalCompra * 0.21)}€</strong></p>`;
         
         
-        select("#totalPrecio").innerHTML = `<p><strong>€${formatPrice(precioFinal)}</strong></p>`;
+        select("#totalPrecio").innerHTML = `<p><strong>${formatPrice(precioFinal)}€</strong></p>`;
    }else{
-    select("#descuentos").innerHTML = `<p><strong>10% off: €0</strong></p>`;
+    select("#descuentos").innerHTML = `<p><strong>10% off: 0€</strong></p>`;
         
         
-    select("#impuestos").innerHTML = `<p><strong>IVA (21%): €0</strong></p>`;
+    select("#impuestos").innerHTML = `<p><strong>IVA (21%): 0€</strong></p>`;
     
     
-    select("#totalPrecio").innerHTML = `<p><strong>€0</strong></p>`;
+    select("#totalPrecio").innerHTML = `<p><strong>0€</strong></p>`;
    }   
 }
 
