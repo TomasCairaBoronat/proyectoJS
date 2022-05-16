@@ -2,7 +2,6 @@
 //Declaracion de shortcuts
 
 // localStorage.clear()
-let espacio = " ";
 const select  = el => document.querySelector(el);
 const guardarLocal = (clave, valor) => { localStorage.setItem(clave, valor) };
 const guardarSession = (clave, valor) => { sessionStorage.setItem(clave, valor) };
@@ -40,10 +39,10 @@ let footerModal = select(".footerModals");
 
 //Storage
 
-let usuarioAlmacenado = JSON.parse(localStorage.getItem("usuarioAlmacenado")) || [];
+let usuarioAlmacenado = obtenerLocal("usuarioAlmacenado") || [];
 if (usuarioAlmacenado != []){
   usuario = usuarioAlmacenado;
-  const { nombre : nombreUsuario ,apellido : apellidoUsuario,edad : edadUsuario,mail : mailUsuario } = usuario
+  const { nombre : nombreUsuario , apellido : apellidoUsuario, edad : edadUsuario, mail : mailUsuario } = usuario
   if (usuario != ""){
     encabezadoModal.innerHTML = `<h5 class="modal-title" id="exampleModalLabel">Perfil de ${nombreUsuario} ${apellidoUsuario}</h5>
     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>`
@@ -84,7 +83,7 @@ function validarFormulario(e){
   let usuario = { nombre: nombreUpper, apellido: apellidoUpper,edad: edadInt, mail: mailLower};
 
   //Desestructuracion de usuario
-  const { nombre : nombreUsuario ,apellido : apellidoUsuario,edad : edadUsuario,mail : mailUsuario } = usuario
+  const { nombre : nombreUsuario , apellido : apellidoUsuario, edad : edadUsuario, mail : mailUsuario } = usuario
 
   //Storage
   guardarLocal("usuarioAlmacenado", JSON.stringify(usuario));
@@ -214,19 +213,35 @@ const pedirComics = async () => {
 }
 pedirComics()
 
-
 //Carrito
 
 let carrito = select("#Carrito");
 
 carrito.onclick = () => {
+  comicsAlmacenados = getComicsFromCart()
+
+  //Body carrito
+
+  if (comicsAlmacenados != ""){
+  select(".carritoBody").innerHTML = `<section class="container" >
+  <h5 style="text-align: left;"><strong>Productos:</strong></h2>
+  <ul id="resumenCompra"></ul>
+  <h5><strong>Descuentos:</strong></h5>
+  <div id="descuentos"></div>
+  <h5><strong>Impuestos:</strong></h5>
+  <div id="impuestos"></div>
+  <h5><strong>Total: <span id="totalPrecio"></span></strong></h5>
+  </section>`
+}else{
+  select(".carritoBody").innerHTML = `<h5 class="sinProducto"><strong>No hay productos en el carrito</strong></h5>`
+}
+
+  //resumen de productos agregados en carrito
 
   let resumenCompra = select("#resumenCompra");
 
   resumenCompra.innerHTML = '';
 
-  const comicsAlmacenados = getComicsFromCart();
-  
   for (let comicAlmacenado of comicsAlmacenados ){
     const { titulo, precio, cantidad,id } = comicAlmacenado;
     
@@ -249,7 +264,7 @@ carrito.onclick = () => {
   
 }
 
-//value1
+//Increment Value
 function increment(id) {
   comicsAlmacenados = getComicsFromCart();
   const comic = comicsAlmacenados.find( comic => comic.id === id);
@@ -258,7 +273,7 @@ function increment(id) {
   select(`#cantidad${id}`).innerText = comic.cantidad;
 }
 
-
+//Decrement Value
 function decrement(id) {
   comicsAlmacenados = getComicsFromCart();
   const comic = comicsAlmacenados.find( comic => comic.id === id);
@@ -305,7 +320,7 @@ botonResumen.onclick = () =>{
         select("#impuestos").innerHTML = `<p><strong>IVA (21%): ${formatPrice(precioTotalCompra * 0.21)}€</strong></p>`;
         
         
-        select("#totalPrecio").innerHTML = `<p><strong>${formatPrice(precioFinal)}€</strong></p>`;
+        select("#totalPrecio").innerHTML = `${formatPrice(precioFinal)}€`;
    }else{
     select("#descuentos").innerHTML = `<p><strong>10% off: 0€</strong></p>`;
         

@@ -103,7 +103,9 @@ body {
 .contactoUl :active {
   color: #d8d8d8; }
 
-/*Footer*/
+.sinProducto {
+  text-align: center; }
+
 .footerGrid {
   background-color: #ff3e3e;
   display: grid;

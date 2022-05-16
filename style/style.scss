@@ -50,6 +50,7 @@ body{
 .botonProducto{
     background-color: rgb(255, 62, 62);
 }
+// comics
 .flowComic1{
     display: flex;
     flex-flow: row wrap;
@@ -110,7 +111,11 @@ body{
       .contactoUl :active {
         color: #d8d8d8; }
 
-/*Footer*/
+//bodyCarrito
+.sinProducto{
+    text-align: center;
+}
+//Footer
 .footerGrid {
     background-color: rgb(255, 62, 62);
     display: grid;
