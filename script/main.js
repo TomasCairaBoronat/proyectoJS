@@ -283,7 +283,7 @@ const options = {
   style: 'currency',
   currency: 'EUR'
 }
-const formatPrice = price => price.toLocaleString('es-ES');
+const formatPrice = price => price.toLocaleString('es-ES',options);
 
 function calcularPorcentaje(porcentaje) {
   return function (precio) {
@@ -306,13 +306,13 @@ botonResumen.onclick = () => {
 
     let precioFinal = iva(precioConDescuento);
 
-    select("#descuentos").innerHTML = `<p><strong>10% off: ${formatPrice(precioTotalCompra * 0.10)}€</strong></p>`;
+    select("#descuentos").innerHTML = `<p><strong>10% off: ${formatPrice(precioTotalCompra * 0.10)}</strong></p>`;
 
 
-    select("#impuestos").innerHTML = `<p><strong>IVA (21%): ${formatPrice(precioTotalCompra * 0.21)}€</strong></p>`;
+    select("#impuestos").innerHTML = `<p><strong>IVA (21%): ${formatPrice(precioTotalCompra * 0.21)}</strong></p>`;
 
 
-    select("#totalPrecio").innerHTML = `${formatPrice(precioFinal)}€`;
+    select("#totalPrecio").innerHTML = `${formatPrice(precioFinal)}`;
   } else {
     select("#descuentos").innerHTML = `<p><strong>10% off: 0€</strong></p>`;
 
