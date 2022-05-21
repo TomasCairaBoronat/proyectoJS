@@ -1,7 +1,5 @@
 //Comics
-const comicsDisponibles = [];
 const comicsCarrito = [];
-const botonFlexFlow = [];
 
 //Pedir comics desde archivo.json
 const pedirComics = async () => {
@@ -91,8 +89,6 @@ const pedirComics = async () => {
 
       guardarLocal("comicsAlmacenados", JSON.stringify(comicsAlmacenados));
     }
-
-
   }
 }
 pedirComics()
